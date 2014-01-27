@@ -1,4 +1,0 @@
-advisornow
-==========
-
-Advisor Now
