@@ -1,14 +1,19 @@
 Advisornow::Application.routes.draw do
+
   resources :users
+  resources :companies
   resources :sessions, only: [:new, :create, :destroy]
   
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
+  match '/signup',  to: 'users#create',         via: 'post'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
+  match '/newcompany', to: 'companies#new', via: 'get'
+  match '/newcompany', to: 'companies#create', via: 'post'
   #get "static_pages/home"
   #get "static_pages/help"
   #get "static_pages/about"
