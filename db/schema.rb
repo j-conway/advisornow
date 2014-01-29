@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128021911) do
+ActiveRecord::Schema.define(version: 20140129200058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,36 @@ ActiveRecord::Schema.define(version: 20140128021911) do
   create_table "companies", force: true do |t|
     t.string   "name"
     t.integer  "entitlements"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "consult_memberships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "consult_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "consults", force: true do |t|
+    t.integer  "creator_id"
+    t.integer  "customer_id"
+    t.integer  "datascientist_id"
+    t.string   "subject"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "meeting_memberships", force: true do |t|
+    t.integer  "meeting_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "meetings", force: true do |t|
+    t.integer  "consult_id"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,6 +61,11 @@ ActiveRecord::Schema.define(version: 20140128021911) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.integer  "company_id"
+    t.string   "phone_number"
+    t.boolean  "alpine_user",     default: false
+    t.boolean  "company_admin",   default: false
+    t.boolean  "entitled",        default: false
+    t.boolean  "admin",           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

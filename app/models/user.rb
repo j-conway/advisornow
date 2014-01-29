@@ -1,5 +1,15 @@
 class User < ActiveRecord::Base
-  belongs_to :user
+  has_many :created_consults, :foreign_key => :creator_id, :class_name => 'Consult'
+  has_many :cust_consults, :foreign_key => :customer_id, :class_name => 'Consult'
+  has_many :ds_consults, :foreign_key => :datascientist_id, :class_name => 'Consult'
+  has_many :consult_memberships
+  has_many :consults, :through => :consult_memberships
+  has_many :meeting_memberships
+  has_many :meetings, :through => :meeting_memberships
+
+  
+
+  belongs_to :company
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   validates :name,  presence: true, length: { maximum: 50 }
