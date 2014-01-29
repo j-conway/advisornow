@@ -2,6 +2,8 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
+    make_consults
+    make_consult_memberships
   end
 end
 
@@ -36,5 +38,29 @@ def make_users
                 entitled: entitled,
                 company_admin: company_admin,
                 admin: admin)
+  end
+end
+
+def make_consults
+  50.times do |n|
+    creator_id = "#{n+1}"
+    customer_id = "#{n+2}"
+    datascientist_id = "#{n+3}"
+    subject = Faker::Lorem.sentence(5)
+    Consult.create!(creator_id: creator_id,
+                customer_id: customer_id,
+                datascientist_id: datascientist_id,
+                subject: subject)
+  end
+end
+
+def make_consult_memberships
+  50.times do |n|
+    10.times do |m|
+      user_id = "#{100-m-n}"
+      consult_id = "#{n+1}"
+      ConsultMembership.create!(user_id: user_id,
+                consult_id: consult_id)
+    end
   end
 end
