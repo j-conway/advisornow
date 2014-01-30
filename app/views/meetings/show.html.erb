@@ -1,0 +1,19 @@
+<% provide(:title, @meeting.description) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @meeting.description %>: <%= @meeting.created_at %>
+      </h1>
+    </section>
+  </aside>
+  <div class="span8">
+    <h3><%= @meeting.description %></h3>
+    <% if @members.any? %>
+      <ul class="users">
+        <%= render @members %>
+      </ul>
+      <%= will_paginate @members %>
+    <% end %>
+  </div>
+</div>

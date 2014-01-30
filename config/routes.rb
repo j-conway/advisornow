@@ -1,8 +1,13 @@
 Advisornow::Application.routes.draw do
-
-  resources :users
+  get "meetings/new"
+  resources :users do
+    member do
+      get :meetings
+    end
+  end
   resources :companies
   resources :sessions, only: [:new, :create, :destroy]
+  resources :meetings
   
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

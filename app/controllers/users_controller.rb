@@ -45,6 +45,13 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def meetings
+    @title = "Meetings"
+    @user = User.find(params[:id])
+    @meetings = @user.meetings.paginate(page: params[:page])
+    render 'show_meetings'
+  end
+
   private
 
     def user_params

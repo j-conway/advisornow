@@ -1,0 +1,12 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <div class="span12">
+    <h3><%= @title %></h3>
+    <% if @user.meetings.any? %>
+      <ul class="users">
+        <%= render @meetings %>
+      </ul>
+      <%= will_paginate @meetings %>
+    <% end %>
+  </div>
+</div>
