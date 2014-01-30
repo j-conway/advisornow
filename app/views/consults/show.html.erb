@@ -1,5 +1,6 @@
 <% provide(:title) %>
 <h1><%= @consult.subject %> </h1>
+<p>  <%= @current_user.name %></p>
 <div class="row">
   <h2>Requester: <%= @consult.customer.name %> </h2>
   <h2>Created By: <%= @consult.creator.name %> </h2>

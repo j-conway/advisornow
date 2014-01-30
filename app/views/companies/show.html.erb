@@ -2,8 +2,18 @@
 <div class="row">
   <aside class="span4">
     <section>
-		<h1><%= @company.name %></h1>
-		<h1><%= @company.entitlements %></h1>
+		<h1>Company: <%= @company.name %></h1>
+		<h1>Entitlements Left: <%= @company.entitlements %></h1>
     </section>
   </aside>
+
+  <div class="span8">
+    <% if @company.consults.any? %>
+      <h3>Consults (<%= @company.consults.count %>)</h3>
+      <ol class="consults">
+        <%= render @consults %>
+      </ol>
+      <%= will_paginate @consults %>
+    <% end %>
+  </div>
 </div>
