@@ -1,11 +1,16 @@
 Advisornow::Application.routes.draw do
   get "meetings/new"
   resources :users do
-    member do
-      get :meetings
-    end
+    #member do
+    #  get :meetings
+    #end
+    resources :meetings
   end
-  resources :companies
+
+  resources :companies do
+    resources :users
+  end
+
   resources :consults
   resources :sessions, only: [:new, :create, :destroy]
   resources :meetings

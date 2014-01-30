@@ -2,9 +2,16 @@ class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:edit, :update, :destroy]
+  before_action :same_company, only: [:show]
+  before_action :correct_company, :unless => :alpine_session?, only: [:index]
 
   def index
-    @users = User.paginate(page:params[:page])
+    if params[:company_id]
+      company = Company.find(params[:company_id])
+      @users = company.users.paginate(page:params[:page])
+    else
+      @users = User.paginate(page:params[:page])
+    end
   end
 
   def show
@@ -18,15 +25,21 @@ class UsersController < ApplicationController
 
 
   def create
-    @user = User.new(user_params)
+    if params[:company_id]
+      @company = Company.find(params[:company_id])
+    else
+      @company =  Company.find(user_params[:company_id])
+    end
+    @user = @company.users.build(user_params)
     if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      #sign_in @user
+      flash[:success] = "User " + @user.name + " added."
+      redirect_to company_path(@company)
     else
       render 'new'
     end
   end
+
 
   def edit
   end
@@ -46,21 +59,25 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  def meetings
-    @title = "Meetings"
-    @user = User.find(params[:id])
-    @meetings = @user.meetings.paginate(page: params[:page])
-    render 'show_meetings'
-  end
+#  def meetings
+#    @title = "Meetings"
+#    @user = User.find(params[:id])
+#    @meetings = @user.meetings.paginate(page: params[:page])
+#    render 'show_meetings'
+#  end
 
   private
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :phone_number, :alpine_user, :company_admin, :entitled)
+                                   :password_confirmation, :phone_number, :alpine_user, :company_admin, :entitled, :company_id)
     end
 
     # Before filters
+
+    def alpine_user?
+      current_user.alpine_user?
+    end
   
     def correct_user
       @user = User.find(params[:id])
@@ -71,4 +88,17 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user.admin?
     end
 
+    def same_company
+      user = User.find(params[:id]) 
+      redirect_to(root_url) unless current_company?(user.company)
+    end
+
+    def correct_company
+      if params[:company_id]
+        company = Company.find(params[:company_id]) 
+        redirect_to(root_url) unless current_company?(company)
+      else
+        redirect_to(root_url)
+      end
+    end
 end

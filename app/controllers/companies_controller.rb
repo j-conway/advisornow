@@ -5,6 +5,7 @@ class CompaniesController < ApplicationController
   def show
   	@company = Company.find(params[:id])
     @consults = @company.consults.paginate(page: params[:page])
+    @user = current_company.users.build
   end
 
   def new

@@ -1,9 +1,12 @@
 <% provide(:title, @company.name) %>
+
+
 <div class="row">
   <aside class="span4">
     <section>
 		<h1>Company: <%= @company.name %></h1>
 		<h1>Entitlements Left: <%= @company.entitlements %></h1>
+    <%= render '/shared/new_user_form' %>
     </section>
   </aside>
 

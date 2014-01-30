@@ -39,6 +39,10 @@ module SessionsHelper
   end
 
 
+  def alpine_session?
+    current_user.alpine_user?
+  end
+
 
   def signed_in_user
     unless signed_in?

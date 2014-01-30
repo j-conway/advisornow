@@ -9,19 +9,29 @@ namespace :db do
 end
 
 def make_users
-  admin = User.create!(name: "Example User",
+  alpine_admin = User.create!(name: "Example User",
                          email: "example@railstutorial.org",
                          password: "foobar",
                          password_confirmation: "foobar",
                          phone_number: "516-680-8605",
                          company_id: 1,
-                         alpine_user: false,
+                         alpine_user: true,
                          entitled: true,
                          company_admin: true,
                          admin: true )
-  45.times do |n|
+  company_admin = User.create!(name: "Example User",
+                         email: "example-1@railstutorial.org",
+                         password: "foobar",
+                         password_confirmation: "foobar",
+                         phone_number: "516-680-8605",
+                         company_id: 2,
+                         alpine_user: false,
+                         entitled: true,
+                         company_admin: true,
+                         admin: false )
+  44.times do |n|
     name  = Faker::Name.name
-    email = "example-#{n+1}@railstutorial.org"
+    email = "example-#{n+2}@railstutorial.org"
     password  = "password"
     phone_number = "516-354-6189"
     company_id = 2
@@ -41,9 +51,20 @@ def make_users
                 admin: admin)
   end
 
-  44.times do |n|
+  company_admin = User.create!(name: "Example User",
+                         email: "example-46@railstutorial.org",
+                         password: "foobar",
+                         password_confirmation: "foobar",
+                         phone_number: "516-680-8605",
+                         company_id: 2,
+                         alpine_user: false,
+                         entitled: true,
+                         company_admin: true,
+                         admin: false )
+
+  43.times do |n|
     name  = Faker::Name.name
-    email = "example-#{n+46}@railstutorial.org"
+    email = "example-#{n+47}@railstutorial.org"
     password  = "password"
     phone_number = "516-354-6189"
     company_id = 3

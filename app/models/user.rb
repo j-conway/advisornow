@@ -6,10 +6,8 @@ class User < ActiveRecord::Base
   has_many :consults, :through => :consult_memberships
   has_many :meeting_memberships
   has_many :meetings, :through => :meeting_memberships
-
-  
-
   belongs_to :company
+  
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   validates :name,  presence: true, length: { maximum: 50 }
