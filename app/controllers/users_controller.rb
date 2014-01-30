@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @meetings = @user.meetings.paginate(page: params[:page])
     render 'show_meetings'
   end
-
+  
   private
 
     def user_params

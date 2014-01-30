@@ -1,5 +1,5 @@
 <li>
-  <%= link_to meeting.description, meeting %>
+  <%= link_to meeting.description, [@consult, meeting] %>
   <% meeting.meeting_members.each do |member| %>
     <%= render 'meetings/member_short', member:member %>
   <% end %>

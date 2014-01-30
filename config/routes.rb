@@ -1,15 +1,12 @@
 Advisornow::Application.routes.draw do
-  get "meetings/new"
-  resources :users do
-    member do
-      get :meetings
-    end
-  end
+  
+  resources :users
   resources :companies
-  resources :consults
+  resources :consults do
+    resources :meetings, :only => [:create, :index, :show]
+  end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :meetings
-
+  resources :meetings, :only => [:show, :destroy, :update, :new, :create]
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signup',  to: 'users#create',         via: 'post'
@@ -20,7 +17,6 @@ Advisornow::Application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/newcompany', to: 'companies#new', via: 'get'
   match '/newcompany', to: 'companies#create', via: 'post'
-
 
 
   #get "static_pages/home"

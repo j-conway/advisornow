@@ -1,0 +1,8 @@
+<%= form_for [@consult, @meeting] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+      
+  <%= f.label :description %>
+  <%= f.text_field :description, placeholder: "Create new meeting..." %>
+  
+  <%= f.submit "Create a meeting", class: "btn btn-large btn-primary" %>
+<% end %>

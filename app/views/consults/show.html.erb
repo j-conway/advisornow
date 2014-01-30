@@ -4,6 +4,7 @@
   <h2>Requester: <%= @consult.customer.name %> </h2>
   <h2>Created By: <%= @consult.creator.name %> </h2>
   <h2>Data Scientist: <%= @consult.datascientist.name %> </h2>
+  <h2><%= render 'shared/meeting_form' %></h2>
   <div class="span8">
     <% if @users.any? %>
       <h3>Members <%= @users.count %> </h3>
@@ -11,6 +12,15 @@
         <%= render @users %>
       </ol>
       <%= will_paginate @users %>
+    <% end %>
+  </div>
+  <div class="span4">
+    <% if @meetings.any? %>
+      <h3>Meetings <%= @meetings.count %> </h3>
+      <ol class="users">
+        <%= render @meetings %>
+      </ol>
+      <%= will_paginate @meetings %>
     <% end %>
   </div>
 </div>

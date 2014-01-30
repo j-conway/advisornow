@@ -1,0 +1,23 @@
+<%= form_for(@consult) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+      
+  <%= f.label :creator_id %>
+  <%= f.text_field :creator_id %>
+
+  <%= f.label :customer_id %>
+  <%= f.text_field :customer_id %>
+
+  <%= f.label :datascientist_id %>
+  <%= f.text_field :datascientist_id %>
+
+  <%= f.label :subject %>
+  <%= f.text_field :subject %>
+
+  <%= f.label :status %>
+  <%= f.text_field :status %>
+
+  <%= f.label :datascientist_status %>
+  <%= f.text_field :datascientist_status %>
+  
+  <%= f.submit "Create a meeting", class: "btn btn-large btn-primary" %>
+<% end %>

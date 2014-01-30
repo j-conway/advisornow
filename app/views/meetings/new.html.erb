@@ -1,2 +1,18 @@
-<h1>Meetings#new</h1>
-<p>Find me in app/views/meetings/new.html.erb</p>
+<% provide(:title, 'Make a new meeting') %>
+<h1>New Meeting</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@meeting) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      
+      <%= f.label :consult_id %>
+      <%= f.number_field :consult_id %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+	  
+	  <%= f.submit "Create a meeting", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
