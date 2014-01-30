@@ -23,6 +23,10 @@ class CompaniesController < ApplicationController
 
   private
 
+    def company_params
+       params.require(:company).permit(:name, :entitlements)
+    end
+
   	def correct_company
       @company = Company.find(params[:id])
       redirect_to(root_url) unless current_company?(@company)
