@@ -1,11 +1,9 @@
 <% provide(:title, @company.name) %>
-
-
+<h1>Company: <%= @company.name %></h1>
+<h1>Entitlements Remaining: <%= @company.entitlements %></h1>
 <div class="row">
   <aside class="span4">
     <section>
-		<h1>Company: <%= @company.name %></h1>
-		<h1>Entitlements Left: <%= @company.entitlements %></h1>
     <%= render '/shared/new_user_form' %>
     </section>
   </aside>
@@ -17,6 +15,16 @@
         <%= render @consults %>
       </ol>
       <%= will_paginate @consults %>
+    <% end %>
+  </div>
+
+  <div class="span8">
+    <% if @users.any? %>
+      <h3>Members <%= @users.count %> </h3>
+      <ol class="users">
+        <%= render @users %>
+      </ol>
+      <%= will_paginate @users %>
     <% end %>
   </div>
 </div>

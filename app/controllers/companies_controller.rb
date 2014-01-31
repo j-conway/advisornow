@@ -1,10 +1,12 @@
 class CompaniesController < ApplicationController
-  before_action :correct_company, only: [:show]
+  before_action :correct_company, :unless => :alpine_session?, only: [:show]
+  before_action :alpine_check, only: [:index]
 
 
   def show
   	@company = Company.find(params[:id])
     @consults = @company.consults.paginate(page: params[:page])
+    @users = @company.users.paginate(page: params[:page])
     @user = current_company.users.build
   end
 
@@ -20,6 +22,10 @@ class CompaniesController < ApplicationController
   	else
   		render 'new'
   	end
+  end
+
+  def index
+    @companies = Company.paginate(page:params[:page])
   end
 
   private
