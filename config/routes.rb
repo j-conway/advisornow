@@ -1,10 +1,19 @@
 Advisornow::Application.routes.draw do
-  
-  resources :users
-  resources :companies
+  get "meetings/new"
+  resources :users do
+    resources :meetings
+    resources :users
+  end
+
+  resources :companies do
+    resources :users
+    resources :consults
+  end
+
   resources :consults do
     resources :meetings, :only => [:create, :index, :show]
   end
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :meetings, :only => [:show, :destroy, :update, :new, :create]
   root  'static_pages#home'

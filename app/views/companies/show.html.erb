@@ -1,9 +1,28 @@
 <% provide(:title, @company.name) %>
+
+
 <div class="row">
   <aside class="span4">
     <section>
-		<h1><%= @company.name %></h1>
-		<h1><%= @company.entitlements %></h1>
+		<h1>Company: <%= @company.name %></h1>
+		<h1>Entitlements Left: <%= @company.entitlements %></h1>
+    <%= render '/shared/new_user_form' %>
+    </section>
+  </aside>
+
+  <div class="span4">
+    <% if @company.consults.any? %>
+      <h3>Consults (<%= @company.consults.count %>)</h3>
+      <ol class="consults">
+        <%= render @consults %>
+      </ol>
+      <%= will_paginate @consults %>
+    <% end %>
+  </div>
+  <aside class="span4">
+    <section>
+    <h1>Book a consult</h1>
+    <%= render '/shared/new_consult_form' %>
     </section>
   </aside>
 </div>

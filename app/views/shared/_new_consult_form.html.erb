@@ -1,0 +1,17 @@
+<%= form_for [@company, @consult] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+
+  <%= f.label :customer_id %>
+  <%= f.text_field :customer_id %>
+
+  <h2>Alpine Data Scientist</h2>
+  <%= f.collection_select(:datascientist_id, User.datascientists.all, :id, :name) %>
+
+  <%= f.label :subject %>
+  <%= f.text_field :subject %>
+
+  
+  <%= f.submit "Create a consult", class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

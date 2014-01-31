@@ -24,6 +24,26 @@ module SessionsHelper
     user == current_user
   end
 
+# Current User's Company
+
+  def current_company=(company)
+    @current_company = company
+  end
+
+  def current_company
+    @current_company ||= current_user.company
+  end
+
+  def current_company?(company)
+    company == current_company
+  end
+
+
+  def alpine_session?
+    current_user.alpine_user?
+  end
+
+
   def signed_in_user
     unless signed_in?
       store_location
