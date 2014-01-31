@@ -47,6 +47,10 @@ module SessionsHelper
     redirect_to(root_url) unless alpine_session?
   end
 
+  def alpine_check
+    redirect_to(root_url) unless alpine_session?
+  end
+
 
   def signed_in_user
     unless signed_in?

@@ -2,28 +2,51 @@
 <h1>Company: <%= @company.name %></h1>
 <h1>Entitlements Remaining: <%= @company.entitlements %></h1>
 <div class="row">
-  <aside class="span4">
-    <section>
-    <%= render '/shared/new_user_form' %>
-    </section>
-  </aside>
+  <% if current_user.company_admin? %> 
+    <aside class="span4">
+      <section>
+      <%= render '/shared/new_user_form' %>
+      </section>
+    </aside>
 
-  <div class="span4">
-    <% if @company.consults.any? %>
-      <h3>Consults (<%= @company.consults.count %>)</h3>
-      <ol class="consults">
-        <%= render @consults %>
-      </ol>
-      <%= will_paginate @consults %>
-    <% end %>
-  </div>
+    <div class="span4">
+      <% if @company.consults.any? %>
+        <h3>Consults (<%= @company.consults.count %>)</h3>
+        <ol class="consults">
+          <%= render @consults %>
+        </ol>
+        <%= will_paginate @consults %>
+      <% end %>
+    </div>
 
-  <aside class="span4">
-    <section>
-    <h1>Book a consult</h1>
-    <%= render '/shared/new_consult_form' %>
-    </section>
-  </aside>
+    <aside class="span4">
+      <section>
+      <h1>Book a consult</h1>
+      <%= render '/shared/new_consult_form' %>
+      </section>
+    </aside>
+
+  <% else %>
+
+    <div class="span8">
+      <% if @company.consults.any? %>
+        <h3>Consults (<%= @company.consults.count %>)</h3>
+        <ol class="consults">
+          <%= render @consults %>
+        </ol>
+        <%= will_paginate @consults %>
+      <% end %>
+    </div>
+
+    <aside class="span4">
+      <section>
+      <h1>Book a consult</h1>
+      <%= render '/shared/new_consult_form' %>
+      </section>
+    </aside>
+
+  <% end %>
+
 
   <div class = "row">
     <div class="span12">
