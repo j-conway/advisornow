@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :correct_company, :unless => :alpine_session?, only: [:show]
-  before_action :alpine_check, only: [:index, :new, :create]
+  before_action :alpine_check, only: [:index, :new, :create, :edit]
 
 
   def show
@@ -28,6 +28,21 @@ class CompaniesController < ApplicationController
   def index
     @companies = Company.paginate(page:params[:page])
     @company = Company.new
+  end
+
+  def edit
+    @title = "Edit user"
+    @company = Company.find(params[:id])
+  end
+
+  def update
+    @company = Company.find(params[:id])
+    if @company.update_attributes(company_params)
+      redirect_to @company, :flash => { :success => "Profile updated." }
+    else
+      @title = "Edit user"
+      render 'edit'
+    end
   end
 
   private
