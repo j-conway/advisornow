@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:edit, :update, :destroy]
   before_action :same_company, only: [:show]
-  before_action :correct_company, :unless => :alpine_session?, only: [:index]
+  before_action :correct_company, only: [:index]
 
   def index
     if params[:company_id]

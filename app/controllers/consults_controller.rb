@@ -1,5 +1,5 @@
 class ConsultsController < ApplicationController
-  before_action :correct_company, only: [:show]
+  before_action :correct_company, :unless => :alpine_session? , only: [:show]
 
   def index
   end
