@@ -1,7 +1,8 @@
-<li>
-  <%= link_to company.name, company %>
-  <% if alpine_session? && company.id != 1 %>
-    | <%= link_to "delete", company, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <% end %>
-</li>
+<tr>
+  <td class="micropost">
+    <span class="content"><%= link_to company.name, company %></span>
+    <span class="timestamp">
+      <%= company.entitlements %> Entitlements remaining.
+    </span>
+  </td>
+</tr>

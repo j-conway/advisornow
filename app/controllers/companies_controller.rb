@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :correct_company, :unless => :alpine_session?, only: [:show]
-  before_action :alpine_check, only: [:index]
+  before_action :alpine_check, only: [:index, :new, :create]
 
 
   def show
@@ -27,6 +27,7 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.paginate(page:params[:page])
+    @company = Company.new
   end
 
   private
