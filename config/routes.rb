@@ -1,12 +1,12 @@
 Advisornow::Application.routes.draw do
   get "meetings/new"
-  resources :users do
+  resources :users, :only => [:create, :index, :show, :edit, :update, :destroy] do
     resources :meetings
-    resources :users
+    resources :users, :only => [:create, :index, :show, :edit, :update, :destroy]
   end
 
   resources :companies do
-    resources :users
+    resources :users, :only => [:create, :index, :show, :edit, :update, :destroy, :new]
     resources :consults
   end
 

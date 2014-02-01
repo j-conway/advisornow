@@ -18,7 +18,21 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number %>
+      
+      <%= f.label :alpine_user , "Alpine user?", :class => "checkbox inline" %>
+      <%= f.check_box :alpine_user %>
+
+      <%= f.label :company_admin, "Company Administrator?", :class => "checkbox inline" %>
+      <%= f.check_box :company_admin %>
+
+      <%= f.label :entitled, "Entitled?", :class => "checkbox inline" %>
+      <%= f.check_box :entitled %>
+
+      <br><br>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
+
   </div>
 </div>

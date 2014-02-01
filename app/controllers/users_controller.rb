@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
-  before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: [:edit, :update, :destroy]
-  before_action :same_company, :unless => :alpine_session?, only: [:show]
-  before_action :correct_company, only: [:index]
+  #before_action :correct_user, only: [:edit, :update]
+  #before_action :admin_user, only: [:edit, :update, :destroy]
+  before_action :same_company, :unless => :alpine_session?, only: [:show, :edit, :update]
+  before_action :correct_company, :unless => :alpine_session?, only: [:index]
+  before_action :company_admin_check, :unless => :alpine_session?, only: [:create, :edit, :update]
+  before_action :alpine_check, only: [:new, :create]
 
   def index
     if params[:company_id]
@@ -42,6 +44,7 @@ class UsersController < ApplicationController
 
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update

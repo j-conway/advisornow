@@ -20,16 +20,21 @@
 
       <%= f.label :phone_number %>
       <%= f.text_field :phone_number %>
+      
+      <% if alpine_session? %>
 
-      <%= f.label :alpine_user, "Alpine user?" %>
-      <%= f.check_box :alpine_user %>
+        <%= f.label :alpine_user , "Alpine user?", :class => "checkbox inline" %>
+        <%= f.check_box :alpine_user %>
 
-      <%= f.label :company_admin, "Company administrator?" %>
+      <% end %>
+
+      <%= f.label :company_admin, "Company Administrator?", :class => "checkbox inline" %>
       <%= f.check_box :company_admin %>
 
-      <%= f.label :entitled, "Entitled?" %>
+      <%= f.label :entitled, "Entitled?", :class => "checkbox inline" %>
       <%= f.check_box :entitled %>
 
+      <br><br>
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
 

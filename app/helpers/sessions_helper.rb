@@ -47,8 +47,8 @@ module SessionsHelper
     redirect_to(root_url) unless alpine_session?
   end
 
-  def alpine_check
-    redirect_to(root_url) unless alpine_session?
+  def company_admin_check
+    redirect_to(root_url) unless current_user.company_admin?
   end
 
 
