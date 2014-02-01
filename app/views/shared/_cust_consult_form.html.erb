@@ -1,0 +1,18 @@
+<%= form_for [@company, @consult] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+
+  <%= f.label :subject, "How can we help?" %>
+  <%= f.text_field :subject %>
+
+
+  <%= f.label :scheduled_length, 'Meeting length (hours)?' %>
+  <%= f.select(:scheduled_length, @scheduled_lengths.map { |value| [ value, value ]}) %>
+
+  <%= f.label :scheduled_datetime, 'When do you want to meet (Pacific Time)?' %>
+  <%= f.text_field :scheduled_datetime %>
+
+
+  <%= f.submit "Create new consult", class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

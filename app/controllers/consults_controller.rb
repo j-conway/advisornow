@@ -1,7 +1,13 @@
 class ConsultsController < ApplicationController
-  before_action :correct_company, only: [:show]
+  before_action :correct_company, :unless => :alpine_session?, only: [:show, :index]
 
   def index
+    if params[:company_id]
+      company = Company.find(params[:company_id])
+      @consults = company.consults.paginate(page:params[:page])
+    else
+      @consults = Consult.paginate(page:params[:page])
+    end
   end
 
   def show
@@ -21,11 +27,8 @@ class ConsultsController < ApplicationController
     @consult = @company.consults.build(consult_params)
     @consult.creator = current_user
     if !alpine_session?
-      @consult.customer_id = current_user
+      @consult.customer_id = current_user.id
       @consult.datascientist_id = nil
-      @consult.datascientist_status = "No"
-    else
-      @consult.datascientist_status = "Yes"
     end
     @consult.status = "Open"
     if @consult.save
@@ -50,17 +53,16 @@ class ConsultsController < ApplicationController
 
     def consult_params
       
-      params.require(:consult).permit(:customer_id, :datascientist_id, :subject)
-      if alpine_session?
-        params.
-      else
-        customer = true
-      end
+      params.require(:consult).permit(:customer_id, :datascientist_id, :subject, :scheduled_datetime, :scheduled_length)
     end
 
     def correct_company
-      @company = Consult.find(params[:id]).company
-      redirect_to(root_url) unless current_company?(@company)
+      if params[:company_id]
+        company = Company.find(params[:company_id]) 
+        redirect_to(root_url) unless current_company?(company)
+      else
+        redirect_to(root_url)
+      end
     end
 
 end

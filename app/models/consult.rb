@@ -6,4 +6,9 @@ class Consult < ActiveRecord::Base
 	has_many :consult_memberships
   	has_many :consult_members, :through => :consult_memberships, :source => :user
   	has_many :meetings
+
+	def assigned?
+      !self.datascientist.nil?
+    end
+
 end

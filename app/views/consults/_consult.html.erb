@@ -1,5 +1,5 @@
 <li>
-  <span class="content"><%= link_to consult.subject, consult %></span>
+  <span class="content"><%= link_to consult.subject, [@company, consult] %></span>
   <span class="timestamp">
     Added <%= consult.created_at %>.
   </span>

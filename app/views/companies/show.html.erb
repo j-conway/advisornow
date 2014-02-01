@@ -21,7 +21,14 @@
   <aside class="span4">
     <section>
     <h1>Book a consult</h1>
-    <%= render '/shared/new_consult_form' %>
+    <% if current_user.alpine_user? && current_company?(current_user.company) %>
+      <%= render '/shared/alpine_consult_form' %>
+    <% end %>
+
+    <% if !current_user.alpine_user? && current_company?(current_user.company) %>
+      <%= render '/shared/cust_consult_form' %>
+    <% end %>
+    
     </section>
   </aside>
   <div class = "row">

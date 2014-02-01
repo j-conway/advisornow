@@ -14,4 +14,19 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require jquery.ui.all
 //= require_tree .
+
+$(function(){
+	$("#consult_scheduled_datetime").datetimepicker({
+		dateFormat: 'yy-mm-dd',
+		controlType: 'select',
+		timeFormat: 'hh:mm tt',
+		stepHour: 1,
+		stepMinute: 30,
+		hourMin:8,
+		hourMax:16,
+		addSliderAccess: true,
+		sliderAccessArgs: {touchonly: false}
+	});
+})
