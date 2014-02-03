@@ -2,8 +2,11 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
 
-  <%= f.label :subject, "What's it about?" %>
+  <%= f.label :subject, "Subject" %>
   <%= f.text_field :subject %>
+
+  <%= f.label :description, "Description" %>
+  <%= f.text_area :description, size: "25x10" %>
   
   <h2><%= @company.name %> Customer</h2>
   <%= f.collection_select(:customer_id, @users.all, :id, :name) %>
@@ -12,14 +15,15 @@
   <%= f.collection_select(:datascientist_id, User.datascientists.all, :id, :name) %>
   
 
-  <%= f.label :scheduled_length, 'Meeting length (hours)?' %>
-  <%= f.select(:scheduled_length, @scheduled_lengths.map { |value| [ value, value ]}) %>
+  <%= f.label :requested_length, 'Meeting length (hours)?' %>
+  <%= f.select(:requested_length, @requested_lengths.map { |value| [ value, value ]}) %>
 
-  <%= f.label :scheduled_date, 'What day you want to meet?' %>
-  <%= f.text_field :scheduled_date, :class => 'scheduled_date' %>
+  <%= f.label :requested_date, 'What day you want to meet?' %>
+  <%= f.text_field :requested_date, :class => 'requested_date' %>
 
-  <%= f.label :scheduled_time, 'What time (Pacific)?' %>
-  <%= f.text_field :scheduled_time, :class => 'scheduled_time' %>
+  <%= f.label :requested_time, 'What time (Pacific)?' %>
+  <%= f.text_field :requested_time, :class => 'requested 
+  _time' %>
 
 
   <%= f.submit "Create new consult", class: "btn btn-large btn-primary" %>

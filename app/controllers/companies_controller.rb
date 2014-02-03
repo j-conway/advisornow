@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
     @users = @company.users.paginate(page: params[:page])
     @user = current_company.users.build
     @consult = current_company.consults.build
-    @scheduled_lengths = [1.0,1.5,2.0,2.5,3.0,3.5,4.0]
+    @requested_lengths = [1.0,1.5,2.0,2.5,3.0,3.5,4.0]
   end
 
   def new

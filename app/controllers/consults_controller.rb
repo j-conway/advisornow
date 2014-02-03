@@ -18,14 +18,14 @@ class ConsultsController < ApplicationController
     @users = @consult.consult_members.paginate(page: params[:page])
     @meetings = @consult.meetings.paginate(page: params[:page])
     @meeting = @consult.meetings.build
-    @scheduled_lengths = [1.0,1.5,2.0,2.5,3.0,3.5,4.0]
+    @requested_lengths = [1.0,1.5,2.0,2.5,3.0,3.5,4.0]
   end
 
   def new
     @company = Company.find(params[:company_id])
     @consult = @company.consults.build
     @users = @company.users.paginate(page: params[:page])
-    @scheduled_lengths = [1.0,1.5,2.0,2.5,3.0,3.5,4.0]
+    @requested_lengths = [1.0,1.5,2.0,2.5,3.0,3.5,4.0]
   end
 
 
