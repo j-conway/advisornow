@@ -1,0 +1,18 @@
+<% provide(:title, 'New Company') %>
+<h1>New Company</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <section>
+      <h1>Book a consult</h1>
+      <% if current_user.alpine_user? %>
+        <%= render '/shared/alpine_consult_form' %>
+      <% end %>
+
+      <% if !current_user.alpine_user? %>
+        <%= render '/shared/cust_consult_form' %>
+      <% end %>
+      
+    </section>
+  </div>
+</div>

@@ -11,7 +11,7 @@
 
     <div class="span4">
       <% if @company.consults.any? %>
-        <h3>Consults (<%= @company.consults.count %>)</h3>
+        <h3><%= link_to "Consults", company_consults_path(@company.id) %> (<%= @company.consults.count %>)</h3>
         <ol class="consults">
           <%= render @consults %>
         </ol>
@@ -22,31 +22,48 @@
     <aside class="span4">
       <section>
       <h1>Book a consult</h1>
-      <%= render '/shared/new_consult_form' %>
+      <% if current_user.alpine_user? %>
+        <%= render '/shared/alpine_consult_form' %>
+      <% end %>
+
+      <% if !current_user.alpine_user? %>
+        <%= render '/shared/cust_consult_form' %>
+      <% end %>
+      
       </section>
     </aside>
+
 
   <% else %>
 
     <div class="span8">
+
+      <h3><%= link_to "Consults", company_consults_path(@company.id) %>(<%= @company.consults.count %>)</h3>
       <table class="table table-hover" summary="Consults">
-      <thead>
-        <tr>
-          <th>Subject</th>
-          <th>Data Scientist</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render @consults %>
-      </tbody>
-    </table>
-    <%= will_paginate @consults %>
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Data Scientist</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @consults %>
+        </tbody>
+      </table>
+      <%= will_paginate @consults %>
     </div>
 
     <aside class="span4">
       <section>
       <h1>Book a consult</h1>
-      <%= render '/shared/new_consult_form' %>
+      <% if current_user.alpine_user? && current_company?(current_user.company) %>
+        <%= render '/shared/alpine_consult_form' %>
+      <% end %>
+
+      <% if !current_user.alpine_user? && current_company?(current_user.company) %>
+        <%= render '/shared/cust_consult_form' %>
+      <% end %>
+      
       </section>
     </aside>
 

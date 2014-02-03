@@ -1,6 +1,6 @@
 <tr>
   <td class="cases">
-    <span class="content"><%= link_to consult.subject, consult %></span>
+    <span class="content"><%= link_to consult.subject, [@company, consult], 'data-no-turbolink' => true %> %></span>
   </td>
   <td class="cases">
     <span class="content"><%= consult.updated_at %></span>
@@ -9,7 +9,7 @@
     <span class="content"><%= consult.datascientist.name %></span>
   </td>
   <td class="cases">
-    <span class="content"><%= link_to consult.subject, consult %></span>
+    <span class="content"><%= link_to consult.creator.name, consult.creator %></span>
   </td>
   <td class="cases">
     <span class="content"><%= consult.updated_at %></span>
@@ -18,3 +18,4 @@
     <span class="content"><%= consult.datascientist.name %></span>
   </td>
 </tr>
+
