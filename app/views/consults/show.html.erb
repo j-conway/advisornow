@@ -4,7 +4,9 @@
   <h2><%= link_to current_company.name, company_path(current_company) %></h2>
   <h2>Requester: <%= @consult.customer.name %> </h2>
   <h2>Created By: <%= @consult.creator.name %> </h2>
+  <% if @consult.datascientist %>
   <h2>Data Scientist: <%= @consult.datascientist.name %> </h2>
+  <% end %>
   <h2><%= render 'shared/meeting_form' %></h2>
   <div class="span8">
     <% if @users.any? %>

@@ -1,10 +1,12 @@
 class ConsultsController < ApplicationController
+
   before_action :correct_company, :unless => :alpine_session?, only: [:show, :index]
+
 
   def index
     if params[:company_id]
-      company = Company.find(params[:company_id])
-      @consults = company.consults.paginate(page:params[:page])
+      @company = Company.find(params[:company_id])
+      @consults = @company.consults.paginate(page:params[:page])
     else
       @consults = Consult.paginate(page:params[:page])
     end
@@ -16,9 +18,14 @@ class ConsultsController < ApplicationController
     @users = @consult.consult_members.paginate(page: params[:page])
     @meetings = @consult.meetings.paginate(page: params[:page])
     @meeting = @consult.meetings.build
+    @scheduled_lengths = [1.0,1.5,2.0,2.5,3.0,3.5,4.0]
   end
 
   def new
+    @company = Company.find(params[:company_id])
+    @consult = @company.consults.build
+    @users = @company.users.paginate(page: params[:page])
+    @scheduled_lengths = [1.0,1.5,2.0,2.5,3.0,3.5,4.0]
   end
 
 
@@ -53,7 +60,7 @@ class ConsultsController < ApplicationController
 
     def consult_params
       
-      params.require(:consult).permit(:customer_id, :datascientist_id, :subject, :scheduled_datetime, :scheduled_length)
+      params.require(:consult).permit(:customer_id, :datascientist_id, :subject, :scheduled_date, :scheduled_time, :scheduled_length)
     end
 
     def correct_company

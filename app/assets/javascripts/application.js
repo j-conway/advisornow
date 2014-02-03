@@ -17,9 +17,14 @@
 //= require jquery.ui.all
 //= require_tree .
 
-$(function(){
-	$("#consult_scheduled_datetime").datetimepicker({
+
+$(function() {
+    $(".scheduled_date").datepicker({
 		dateFormat: 'yy-mm-dd',
+		addSliderAccess: true,
+		sliderAccessArgs: {touchonly: false}
+	});
+	$(".scheduled_time").timepicker({
 		controlType: 'select',
 		timeFormat: 'hh:mm tt',
 		stepHour: 1,
@@ -29,4 +34,4 @@ $(function(){
 		addSliderAccess: true,
 		sliderAccessArgs: {touchonly: false}
 	});
-})
+ });

@@ -12,7 +12,22 @@
 
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %>
+
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %>
+      
+    <% if alpine_session? %>  
+      <%= f.label :alpine_user , "Alpine?", :class => "checkbox inline" %>
+      <%= f.check_box :alpine_user %>
+    <% end %>
+ 
+    <%= f.label :company_admin, "Company Admin?", :class => "checkbox inline" %>
+    <%= f.check_box :company_admin %>
+    <br>
+
+    <%= f.label :entitled, "Entitled?", :class => "checkbox inline" %>
+    <%= f.check_box :entitled %>
+    <br><br>
      
     <%= f.submit "Create new user", class: "btn btn-large btn-primary" %>
-  </div>
 <% end %>

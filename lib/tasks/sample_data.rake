@@ -18,7 +18,8 @@ def make_users
                          alpine_user: true,
                          entitled: true,
                          company_admin: true,
-                         admin: true )
+                         admin: true,
+                         datascientist: true )
   company_admin = User.create!(name: "Example User",
                          email: "example-1@railstutorial.org",
                          password: "foobar",
@@ -28,7 +29,8 @@ def make_users
                          alpine_user: false,
                          entitled: true,
                          company_admin: true,
-                         admin: false )
+                         admin: false
+                         )
   44.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+2}@railstutorial.org"

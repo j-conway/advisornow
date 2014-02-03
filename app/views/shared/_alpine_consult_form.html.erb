@@ -15,8 +15,11 @@
   <%= f.label :scheduled_length, 'Meeting length (hours)?' %>
   <%= f.select(:scheduled_length, @scheduled_lengths.map { |value| [ value, value ]}) %>
 
-  <%= f.label :scheduled_datetime, 'When do you want to meet (Pacific Time)?' %>
-  <%= f.text_field :scheduled_datetime %>
+  <%= f.label :scheduled_date, 'What day you want to meet?' %>
+  <%= f.text_field :scheduled_date, :class => 'scheduled_date' %>
+
+  <%= f.label :scheduled_time, 'What time (Pacific)?' %>
+  <%= f.text_field :scheduled_time, :class => 'scheduled_time' %>
 
 
   <%= f.submit "Create new consult", class: "btn btn-large btn-primary" %>
