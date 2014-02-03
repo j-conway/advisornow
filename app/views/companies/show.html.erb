@@ -21,15 +21,7 @@
 
     <aside class="span4">
       <section>
-      <h1>Book a consult</h1>
-      <% if current_user.alpine_user? %>
-        <%= render '/shared/alpine_consult_form' %>
-      <% end %>
-
-      <% if !current_user.alpine_user? %>
-        <%= render '/shared/cust_consult_form' %>
-      <% end %>
-      
+      <%= link_to "Create New Consult", new_company_consult_path(@company.id), class: "btn btn-large btn-primary" %>
       </section>
     </aside>
 
@@ -48,14 +40,7 @@
 
     <aside class="span4">
       <section>
-      <h1>Book a consult</h1>
-      <% if current_user.alpine_user? && current_company?(current_user.company) %>
-        <%= render '/shared/alpine_consult_form' %>
-      <% end %>
-
-      <% if !current_user.alpine_user? && current_company?(current_user.company) %>
-        <%= render '/shared/cust_consult_form' %>
-      <% end %>
+      <%= link_to "Create New Consult", new_company_consult_path(@company.id), class: "btn btn-large btn-primary" %>
       
       </section>
     </aside>

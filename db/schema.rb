@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140203212206) do
     t.time     "requested_time"
     t.date     "requested_date"
     t.decimal  "requested_length"
+    t.text     "description"
   end
 
   create_table "meeting_memberships", force: true do |t|

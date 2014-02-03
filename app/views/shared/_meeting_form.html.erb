@@ -5,7 +5,7 @@
   <%= f.text_field :description, placeholder: "Create new meeting..." %>
 
   <%= f.label :requested_length, 'Meeting length (hours)?' %>
-  <%= f.select(:requested_length, @scheduled_lengths.map { |value| [ value, value ]}) %>
+  <%= f.select(:requested_length, @requested_lengths.map { |value| [ value, value ]}) %>
 
   <%= f.label :requested_date, 'What day you want to meet?' %>
   <%= f.text_field :requested_date, :class => 'scheduled_date' %>

@@ -5,6 +5,8 @@
   <%= f.label :subject, "How can we help?" %>
   <%= f.text_field :subject %>
 
+  <%= f.label :description, "Description" %>
+  <%= f.text_area :description, size: "25x10" %>
 
   <%= f.label :requested_length, 'Meeting length (hours)?' %>
   <%= f.select(:requested_length, @scheduled_lengths.map { |value| [ value, value ]}) %>
