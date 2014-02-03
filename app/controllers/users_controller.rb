@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_action :authenticate
   #before_action :correct_user, only: [:edit, :update]
   #before_action :admin_user, only: [:edit, :update, :destroy]
   before_action :same_company, :unless => :alpine_session?, only: [:show, :edit, :update]
