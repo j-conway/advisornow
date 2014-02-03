@@ -29,13 +29,18 @@
   <% else %>
 
     <div class="span8">
-      <% if @company.consults.any? %>
-        <h3>Consults (<%= @company.consults.count %>)</h3>
-        <ol class="consults">
-          <%= render @consults %>
-        </ol>
-        <%= will_paginate @consults %>
-      <% end %>
+      <table class="table table-hover" summary="Consults">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Data Scientist</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @consults %>
+      </tbody>
+    </table>
+    <%= will_paginate @consults %>
     </div>
 
     <aside class="span4">
