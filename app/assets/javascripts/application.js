@@ -19,12 +19,12 @@
 
 
 $(function() {
-    $(".scheduled_date").datepicker({
+    $(".requested_date").datepicker({
 		dateFormat: 'yy-mm-dd',
 		addSliderAccess: true,
 		sliderAccessArgs: {touchonly: false}
 	});
-	$(".scheduled_time").timepicker({
+	$(".requested_time").timepicker({
 		controlType: 'select',
 		timeFormat: 'hh:mm tt',
 		stepHour: 1,

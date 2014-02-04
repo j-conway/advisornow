@@ -2,12 +2,19 @@
 <h1><%= @consult.subject %> </h1>
 <div class="row">
   <h2><%= link_to current_company.name, company_path(current_company) %></h2>
-  <h2>Requester: <%= @consult.customer.name %> </h2>
+  <h2>Client: <%= @consult.customer.name %> </h2>
   <h2>Created By: <%= @consult.creator.name %> </h2>
   <% if @consult.datascientist %>
   <h2>Data Scientist: <%= @consult.datascientist.name %> </h2>
   <% end %>
-  <h2><%= render 'shared/meeting_form' %></h2>
+  <h2>Date Requested: <%= @consult.requested_date %> </h2>
+  <h2>Time Requested: <%= @consult.requested_time %> </h2>
+    <section>
+      <%= link_to "Edit Consult", edit_company_consult_path(:company_id => @consult.company.id), class: "btn btn-large btn-primary" %>
+      </section>
+  <div class="span12">
+    <h2>We're just waiting on our data scientists to confirm. Hold tight!</h2>
+  </div>
   <div class="span8">
     <% if @users.any? %>
       <h3>Members <%= @users.count %> </h3>
@@ -26,4 +33,7 @@
       <%= will_paginate @meetings %>
     <% end %>
   </div>
+  <% if !@consult.status == 'Requested' %>
+  <h2><%= render 'shared/meeting_form' %></h2>
+  <% end %>
 </div>

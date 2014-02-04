@@ -6,18 +6,18 @@
   <%= f.text_field :subject %>
 
   <%= f.label :description, "Description" %>
-  <%= f.text_area :description, size: "25x10" %>
+  <%= f.text_area :description, size: "25x5" %>
 
   <%= f.label :requested_length, 'Meeting length (hours)?' %>
-  <%= f.select(:requested_length, @scheduled_lengths.map { |value| [ value, value ]}) %>
+  <%= f.select(:requested_length, @requested_lengths.map { |value| [ value, value ]}) %>
 
   <%= f.label :requested_date, 'What day you want to meet?' %>
-  <%= f.text_field :requested_date, :class => 'scheduled_date' %>
+  <%= f.text_field :requested_date, :class => 'requested_date' %>
 
   <%= f.label :requested_time, 'What time (Pacific)?' %>
-  <%= f.text_field :requested_time, :class => 'scheduled_time' %>
+  <%= f.text_field :requested_time, :class => 'requested_time' %>
 
 
-  <%= f.submit "Create new consult", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
   </div>
 <% end %>

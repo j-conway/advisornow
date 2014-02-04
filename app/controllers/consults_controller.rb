@@ -37,7 +37,7 @@ class ConsultsController < ApplicationController
       @consult.customer_id = current_user.id
       @consult.datascientist_id = nil
     end
-    @consult.status = "Open"
+    @consult.status = "Requested"
     if @consult.save
       flash[:success] = "Consult added."
       redirect_to company_path(@company)
@@ -47,9 +47,21 @@ class ConsultsController < ApplicationController
   end
 
   def edit
+    @company = Company.find(params[:company_id])
+    @consult = Consult.find(params[:id])
+    @requested_lengths = [1.0,1.5,2.0,2.5,3.0,3.5,4.0]
+    @users = @company.users.paginate(page: params[:page])
   end
 
   def update
+    @company = Consult.find(params[:company_id])
+    @consult = Consult.find(params[:id])
+    if @consult.update_attributes(consult_params)
+      flash[:success] = "Consult updated"
+      redirect_to company_consult_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -60,7 +72,7 @@ class ConsultsController < ApplicationController
 
     def consult_params
       
-      params.require(:consult).permit(:customer_id, :datascientist_id, :subject, :scheduled_date, :scheduled_time, :scheduled_length)
+      params.require(:consult).permit(:customer_id, :datascientist_id, :subject, :description, :requested_date, :requested_time, :requested_length)
     end
 
     def correct_company

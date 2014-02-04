@@ -1,10 +1,9 @@
-<% provide(:title, 'New Consult') %>
+<% provide(:title, 'Edit Consult') %>
 <div class="row">
   <div class="span6 offset3">
     <section>
-      <h1>Book a consult</h1>
-      <h2><%= @company.entitlements %> Entitlements Remaining</h2>
-      <h2><%= link_to current_company.name, company_path(current_company) %></h2>
+      <h1>Edit a consult</h1>
+      <h2><%= link_to @consult.subject, company_consult_path %></h2>
       <% if current_user.alpine_user? %>
         <%= render '/shared/alpine_consult_form' %>
       <% end %>
