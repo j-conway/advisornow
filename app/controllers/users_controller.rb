@@ -18,7 +18,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @consults = @user.consults.paginate(page: params[:page])
+    @status = params[:status]
+    if @status
+      consults_with_status = @user.consults.status_is(@status)
+    else
+      consults_with_status = @user.consults.status_is("Open")
+    end
+    @consults = consults_with_status.paginate(page: params[:page])
   end
 
   def new
@@ -70,6 +76,8 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation, :phone_number, :alpine_user, :company_admin, :entitled, :company_id)
     end
+
+
 
     # Before filters
 

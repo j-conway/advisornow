@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     where(datascientist: true)
   end
 
+  def self.status_is(status)
+    where("status = ?", status)
+  end
+
   private
 
     def create_remember_token

@@ -1,6 +1,11 @@
 <% provide(:title, @user.name) %>
   <% if @user.consults.any? %>
     <h1><%= @user.name + "'s" %> Consultations</h1>
+    <% if @status == "Open" %>
+      <p><%= link_to "View Closed Tickets", {:status => "Closed"} %></p>
+    <% else %>
+      <p><%= link_to "View Open Tickets", {:status => "Open"} %></p>
+    <% end %>
     <table class="table table-hover" summary="Consults">
       <thead>
         <tr>

@@ -11,4 +11,8 @@ class Consult < ActiveRecord::Base
       !self.datascientist.nil?
     end
 
+    def self.status_is(status)
+      where("status = ?", status)
+    end
+
 end

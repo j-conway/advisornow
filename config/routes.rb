@@ -1,5 +1,7 @@
 Advisornow::Application.routes.draw do
   get "meetings/new"
+  #get 'users/:id', to: 'users#show', defaults: { status: 'Open' }
+
   resources :users, :only => [:create, :index, :show, :edit, :update, :destroy] do
     resources :meetings
     resources :users, :only => [:create, :index, :show, :edit, :update, :destroy]
