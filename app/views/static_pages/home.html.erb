@@ -1,13 +1,35 @@
-<div class="center hero-unit">
-  <h1>Welcome to Advisor Now</h1>
+<% if signed_in? %>
 
-  <h2>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
+  <% if @current_user.consults.any? %>
+    <h1>Your Consultations</h1>
+    <% if @status != "Open" %>
+      <p><%= link_to "View Open Tickets" %></p>
+    <% else %>
+      <p><%= link_to "View Closed Tickets", {:status => "Closed"} %></p>
+    <% end %>
+    <table class="table table-hover" summary="Consults">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Data Scientist</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @consults %>
+      </tbody>
+    </table> 
+    <%= will_paginate @consults %>
+  <% end %>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-</div>
 
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+
+<% else %>
+
+<h1>Sample App</h1>
+<p>
+  This is the home page for the <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a> sample application.
+</p>
+
+<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+
+<% end %>

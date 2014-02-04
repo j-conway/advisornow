@@ -12,7 +12,7 @@ class Consult < ActiveRecord::Base
     end
 
     def self.status_is(status)
-      where("status = "requested" OR ?", status)
+      where("status = ?", status)
     end
 
 end
