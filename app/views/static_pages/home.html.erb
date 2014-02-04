@@ -7,18 +7,7 @@
     <% else %>
       <p><%= link_to "View Closed Tickets", {:status => "Closed"} %></p>
     <% end %>
-    <table class="table table-hover" summary="Consults">
-      <thead>
-        <tr>
-          <th>Subject</th>
-          <th>Data Scientist</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render @consults %>
-      </tbody>
-    </table> 
-    <%= will_paginate @consults %>
+    <%= render 'shared/consults_table' %>
   <% end %>
 
 
