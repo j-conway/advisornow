@@ -13,6 +13,7 @@ class ConsultsController < ApplicationController
   end
 
   def show
+    if params[:status]
     @current_user = current_user
     @consult = Consult.find(params[:id])
     @users = @consult.consult_members.paginate(page: params[:page])
