@@ -2,11 +2,6 @@
 
   <% if @current_user.consults.any? %>
     <h1>Your Consultations</h1>
-    <% if @status != "Open" %>
-      <p><%= link_to "View Open Tickets" %></p>
-    <% else %>
-      <p><%= link_to "View Closed Tickets", {:status => "Closed"} %></p>
-    <% end %>
     <%= render 'shared/consults_table' %>
   <% end %>
 

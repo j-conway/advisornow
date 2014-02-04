@@ -5,11 +5,9 @@ class CompaniesController < ApplicationController
 
   def show
   	@company = Company.find(params[:id])
-    @consults = @company.consults.paginate(page: params[:page])
-    @users = @company.users.paginate(page: params[:page])
-    @user = current_company.users.build
-    @consult = current_company.consults.build
-    @requested_lengths = [1.0,1.5,2.0,2.5,3.0,3.5,4.0]
+    status_default
+    unpaginated_consults = @company.consults.status_is(@status)
+    @consults = unpaginated_consults.paginate(page:params[:page])
   end
 
   def new

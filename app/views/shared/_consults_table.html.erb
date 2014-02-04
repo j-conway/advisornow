@@ -1,3 +1,8 @@
+<% if @status != "Open" %>
+  <p><%= link_to "View Open Tickets" %></p>
+<% else %>
+  <p><%= link_to "View Closed Tickets", {:status => "Closed"} %></p>
+<% end %>
 <table class="table table-hover" summary="Consults">
   <thead>
     <tr>

@@ -1,14 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
-    @status = params[:status]
-    if !@status
-      @status = "Open"
-    end
-      if signed_in?
-        @current_user = current_user
-        consults_with_status = @current_user.consults.status_is(@status)
-        @consults = consults_with_status.paginate(page: params[:page])
-      end
+    status_default
+    unpaginated_consults = current_user.consults.status_is(@status)
+    @consults = unpaginated_consults.paginate(page:params[:page])
   end
 
   def help
@@ -20,4 +14,6 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
+
 end
+
