@@ -6,7 +6,7 @@
   <%= f.text_field :subject %>
 
   <%= f.label :description, "Description" %>
-  <%= f.text_area :description, size: "25x10" %>
+  <%= f.text_area :description, size: "25x5" %>
   
   <h2><%= @company.name %> Customer</h2>
   <%= f.collection_select(:customer_id, @users.all, :id, :name) %>
@@ -22,10 +22,9 @@
   <%= f.text_field :requested_date, :class => 'requested_date' %>
 
   <%= f.label :requested_time, 'What time (Pacific)?' %>
-  <%= f.text_field :requested_time, :class => 'requested 
-  _time' %>
+  <%= f.text_field :requested_time, :class => 'requested_time' %>
 
 
-  <%= f.submit "Create new consult", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
   </div>
 <% end %>
