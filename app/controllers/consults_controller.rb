@@ -13,7 +13,6 @@ class ConsultsController < ApplicationController
   end
 
   def show
-    if params[:status]
     @current_user = current_user
     @consult = Consult.find(params[:id])
     @users = @consult.consult_members.paginate(page: params[:page])
@@ -72,8 +71,7 @@ class ConsultsController < ApplicationController
 
 
     def consult_params
-      
-      params.require(:consult).permit(:customer_id, :datascientist_id, :subject, :description, :requested_date, :requested_time, :requested_length)
+      params.require(:consult).permit(:customer_id, :datascientist_id, :subject, :description, :requested_date_field, :requested_time_field, :requested_length)
     end
 
     def correct_company

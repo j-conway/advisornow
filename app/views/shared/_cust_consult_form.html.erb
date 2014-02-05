@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
 
-  <%= f.label :subject, "How can we help?" %>
+  <%= f.label :subject, "Subject" %>
   <%= f.text_field :subject %>
 
   <%= f.label :description, "Description" %>
@@ -11,11 +11,14 @@
   <%= f.label :requested_length, 'Meeting length (hours)?' %>
   <%= f.select(:requested_length, @requested_lengths.map { |value| [ value, value ]}) %>
 
-  <%= f.label :requested_date, 'What day you want to meet?' %>
-  <%= f.text_field :requested_date, :class => 'requested_date' %>
+  <%= f.label :requested_date_field, 'What day you want to meet?' %>
+  <%= f.text_field :requested_date_field, :class => 'datepicker' %>
 
-  <%= f.label :requested_time, 'What time (Pacific)?' %>
-  <%= f.text_field :requested_time, :class => 'requested_time' %>
+  <%= f.label :requested_time_field, 'What time (Pacific)?' %>
+  <div class="input-append bootstrap-timepicker">
+      <%= f.text_field :requested_time_field, :id => 'timepicker1', :class => 'input-small' %>
+      <span class="add-on"><i class="icon-time"></i></span>
+  </div>
 
 
   <%= f.submit "Submit", class: "btn btn-large btn-primary" %>

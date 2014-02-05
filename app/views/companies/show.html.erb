@@ -42,7 +42,7 @@
           <%= render @consults %>
         </tbody>
       </table>
-      <%= will_paginate @consults %>
+      <%= will_paginate @consults, renderer: BootstrapPagination::Rails %>
     </div>
 
     <aside class="span4">
