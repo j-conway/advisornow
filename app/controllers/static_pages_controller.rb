@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
     if signed_in?
       @company = current_company
       status_default
-      unpaginated_consults = current_user.consults.status_is(@status)
+      unpaginated_consults = current_user.cust_consults.status_is(@status)
       @consults = unpaginated_consults.paginate(page:params[:page])
     end
   end

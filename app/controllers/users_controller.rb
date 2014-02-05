@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     status_default
     @company = @user.company
-    unpaginated_consults = @user.consults.status_is(@status)
+    unpaginated_consults = @user.cust_consults.status_is(@status)
     @consults = unpaginated_consults.paginate(page:params[:page])
   end
 
