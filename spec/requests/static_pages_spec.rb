@@ -13,15 +13,14 @@ describe "Static pages" do
       let(:user) { FactoryGirl.create(:user) }
       let(:consult) { FactoryGirl.create(:consult) }
       before do
-
-        FactoryGirl.create(:consult_membership, customer: user, consult: 
+        FactoryGirl.create(:consult_membership, user: user, consult: consult)
         sign_in user
         visit root_path
       end
 
-      it "should render the user's feed" do
+      it "should show consult text" do
         user.consults.each do |item|
-          expect(page).to have_selector("asdfasd", text: 'hi john')
+          expect(page).to have_text(item.subject)
         end
       end
     end
