@@ -8,6 +8,7 @@ class CompaniesController < ApplicationController
     status_default
     unpaginated_consults = @company.consults.status_is(@status)
     @consults = unpaginated_consults.paginate(page:params[:page])
+    @user = User.new
   end
 
   def new

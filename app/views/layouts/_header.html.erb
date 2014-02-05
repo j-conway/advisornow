@@ -1,33 +1,32 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "advisor now", root_path, id: "logo" %>
-      <nav>
-        <% if signed_in? %>
-          <%= link_to "Book Now", new_company_consult_path(current_company.id), class: "btn btn-sm btn-primary" %>
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to "advisor now", root_path, id: "logo", :class => "navbar-brand" %>
+    </div>
+    <div class="navbar-collapse collapse">
+      <% if signed_in? %>
+          <%= link_to "Book Now", new_company_consult_path(current_company.id), class: "btn btn-sm btn-primary btn-book-now" %>
         <% end %>
-        <ul class="nav pull-right">
-          <% if signed_in? %>
-            <li><%= link_to "Home", root_path %></li>
-            <li><%= link_to current_company.name, company_path(current_company) %></li>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b> 
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Profile", current_user %></li>
-                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "Sign in", signin_path %></li>
-          <% end %>
-        </ul>
-      </nav>
+      <ul class="nav navbar-nav navbar-right">
+        <% if signed_in? %>
+          <li><%= link_to "Home", user_path(current_user) %></li>
+          <li><%= link_to current_company.name, company_path(current_company) %></li>
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", current_user %></li>
+              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Sign out", signout_path, method: "delete" %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "Sign in", signin_path %></li>
+        <% end %>
+      </ul>
+
     </div>
   </div>
-</header>
+</div>

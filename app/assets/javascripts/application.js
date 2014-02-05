@@ -13,25 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-datepicker
+//= require bootstrap-timepicker.min
 //= require turbolinks
-//= require jquery.ui.all
 //= require_tree .
 
-
 $(function() {
-    $(".requested_date").datepicker({
-		dateFormat: 'yy-mm-dd',
-		addSliderAccess: true,
-		sliderAccessArgs: {touchonly: false}
+	
+	$('.form-control.date').datepicker({
+		startDate: '-1d',
+		autoclose: true,
 	});
-	$(".requested_time").timepicker({
-		controlType: 'select',
-		timeFormat: 'hh:mm tt',
-		stepHour: 1,
-		stepMinute: 30,
-		hourMin:8,
-		hourMax:16,
-		addSliderAccess: true,
-		sliderAccessArgs: {touchonly: false}
-	});
+	$('.form-control.date').datepicker("setDate", new Date());
+	$('.timepicker').timepicker();
+
  });
+
+$("#timeIcon").click(function(){
+  $("#timeInput").click();
+});

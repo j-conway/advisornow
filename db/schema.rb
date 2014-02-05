@@ -37,11 +37,10 @@ ActiveRecord::Schema.define(version: 20140204221439) do
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",           default: "Open"
-    t.time     "requested_time"
-    t.date     "requested_date"
+    t.string   "status",             default: "Open"
     t.decimal  "requested_length"
     t.integer  "closer_id"
+    t.datetime "requested_datetime"
     t.string   "description"
   end
 
