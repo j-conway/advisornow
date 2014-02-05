@@ -1,11 +1,15 @@
-<div class="center hero-unit">
-  <h1>Welcome to Advisor Now</h1>
+<% if signed_in? %>
 
-  <h2>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
+  <% if @current_user.consults.any? %>
+    <h1>Your Consultations</h1>
+    <%= render 'shared/consults_table' %>
+  <% end %>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-</div>
+
+
+<% else %>
+
+<h1>Welcome to Advisor Now</h1>
+
+<% end %>
+

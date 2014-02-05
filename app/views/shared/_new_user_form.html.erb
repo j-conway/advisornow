@@ -2,32 +2,45 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => 'form-control' %>
 
     <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :class => 'form-control' %>
 
     <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, :class => 'form-control' %>
 
     <%= f.label :password_confirmation, "Confirmation" %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, :class => 'form-control' %>
 
     <%= f.label :phone_number %>
     <%= f.text_field :phone_number %>
-      
-    <% if alpine_session? %>  
-      <%= f.label :alpine_user , "Alpine?", :class => "checkbox inline" %>
-      <%= f.check_box :alpine_user %>
-    <% end %>
+      <div class="row user-form-choices">
+        
+<div class="checkbox-group col-lg-6 col-md-6">
  
-    <%= f.label :company_admin, "Company Admin?", :class => "checkbox inline" %>
-    <%= f.check_box :company_admin %>
-    <br>
+    <%= f.label :company_admin, "Admin?", :class => "checkbox inline checkbox-label" %>
+    <%= f.check_box :company_admin, :class => "checkbox-box" %>
+</div>
+<div class="checkbox-group col-lg-6 col-md-6">
 
-    <%= f.label :entitled, "Entitled?", :class => "checkbox inline" %>
-    <%= f.check_box :entitled %>
-    <br><br>
-     
+    <%= f.label :entitled, "Entitled?", :class => "checkbox inline checkbox-label" %>
+    <%= f.check_box :entitled, :class => "checkbox-box" %>
+   </div>
+   </div>
+   <div class="row user-form-choices">
+   <div class="checkbox-group col-lg-4 col-md-4 col-centered">
+    <% if alpine_session? %>  
+      <%= f.label :alpine_user , "Alpine?", :class => "checkbox inline checkbox-label" %>
+      <%= f.check_box :alpine_user, :class => "checkbox-box " %>
+    <% end %>
+</div>
+</div>
+
+   <br>
+     <div class="row user-form-choices">
+        <div class="col-lg-8 col-md-8 col-centered">
     <%= f.submit "Create new user", class: "btn btn-large btn-primary" %>
+</div>
+</div>
 <% end %>

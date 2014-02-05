@@ -121,7 +121,7 @@ end
 
 def make_companies
   3.times do |n|
-    name = Faker::Lorem.sentence(rand(2)).chomp('.')
+    name = Faker::Lorem.sentence(1).chomp('.')
     entitlements  = 5
     Company.create!(name: name,
                      entitlements: entitlements)

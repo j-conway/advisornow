@@ -4,6 +4,9 @@
       <%= link_to "advisor now", root_path, id: "logo", :class => "navbar-brand" %>
     </div>
     <div class="navbar-collapse collapse">
+      <% if signed_in? %>
+          <%= link_to "Book Now", new_company_consult_path(current_company.id), class: "btn btn-sm btn-primary btn-book-now" %>
+        <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if signed_in? %>
           <li><%= link_to "Home", user_path(current_user) %></li>
@@ -23,6 +26,7 @@
           <li><%= link_to "Sign in", signin_path %></li>
         <% end %>
       </ul>
+
     </div>
   </div>
 </div>

@@ -10,9 +10,9 @@ gem 'will_paginate-bootstrap'
 gem 'pg', '0.15.1'
 
 
-
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
+  gem 'factory_girl_rails', '4.2.1'
 end
 
 group :test do

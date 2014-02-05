@@ -18,13 +18,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @status = params[:status]
-    if @status
-      consults_with_status = @user.consults.status_is(@status)
-    else
-      consults_with_status = @user.consults.status_is("Open")
-    end
-    @consults = consults_with_status.paginate(page: params[:page])
+    status_default
+    unpaginated_consults = @user.consults.status_is(@status)
+    @consults = unpaginated_consults.paginate(page:params[:page])
   end
 
   def new

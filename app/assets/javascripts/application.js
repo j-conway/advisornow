@@ -19,9 +19,12 @@
 //= require_tree .
 
 $(function() {
+	
 	$('.form-control.date').datepicker({
-		
+		startDate: '-1d',
+		autoclose: true,
 	});
+	$('.form-control.date').datepicker("setDate", new Date());
 	$('.timepicker').timepicker();
 
  });
