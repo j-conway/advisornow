@@ -7,7 +7,7 @@ class CompaniesController < ApplicationController
   	@company = Company.find(params[:id])
     status_default
     unpaginated_consults = @company.consults.status_is(@status)
-    @consults = unpaginated_consults.paginate(page:params[:page])
+    @consults = unpaginated_consults.paginate(:page => params[:page], :per_page => 10)
     @user = User.new
   end
 
