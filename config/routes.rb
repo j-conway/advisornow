@@ -13,7 +13,7 @@ Advisornow::Application.routes.draw do
   end
 
   resources :consults do
-    resources :meetings, :only => [:create, :index, :show]
+    resources :meetings, :only => [:create, :index, :show, :edit, :new]
   end
 
   resources :sessions, only: [:new, :create, :destroy]
@@ -27,7 +27,7 @@ Advisornow::Application.routes.draw do
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/newcompany', to: 'companies#new', via: 'get'
-  match '/newcompany', to: 'companies#create', via: 'post'
+  match '/consults/:consult_id/meetings/:id(.:format)', to: 'meetings#update', via: 'patch'
 
 
   #get "static_pages/home"

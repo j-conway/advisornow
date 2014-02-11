@@ -1,11 +1,11 @@
 <% provide(:title, 'New Consult') %>
 <div class="row">
-  <div class="col-lg-9 col-centered">
+  <div class="col-lg-10 col-centered">
     <section>
 
-      <h1>Book a consult</h1>
-      <h2 id="entitlements-remaining"><%= @company.entitlements %> Entitlements Remaining</h2>
+      <h1>Book a Consult</h1>
       <h2 id="back-to-company"><%= link_to "<< Back to "+current_company.name, company_path(current_company) %></h2>
+      <h2 id="entitlements-remaining"><%= @company.entitlements %> Entitlements Remaining</h2>
       </section>
   </div>
 </div>

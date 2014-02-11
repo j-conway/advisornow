@@ -5,6 +5,7 @@ class Company < ActiveRecord::Base
     has_many :consults, :through => :users, :source => :cust_consults
 	validates :name, presence: true, length: { maximum: 50 }
 	validates :entitlements,  presence: true
+	
 
 	def self.admins
       self.users where(company_admin: true)

@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-lg-8 col-centered">
-		<h2><%= @consult.creator.name %> requested this consult on <%= @consult.requested_date %> at <%= @consult.requested_time.time('%H:%M:%S') %></h2>
-		<h2>Confirm</h2>
+		<h2><%= @consult.creator.name %> requested this consult on <%= @consult.requested_date_field %> at <%= @consult.requested_time_field %></h2>
+			<% render 'meeting_form' %>
 		<h2>Request a different time</h2>
 	</div>
 </div>

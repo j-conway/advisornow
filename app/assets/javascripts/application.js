@@ -23,9 +23,22 @@ $(function() {
 	$('.form-control.date').datepicker({
 		startDate: '-1d',
 		autoclose: true,
+		dateFormat: 'mm/dd/yyyy'
 	});
 	$('.form-control.date').datepicker("setDate", new Date());
-	$('.timepicker').timepicker();
+
+	$('.form-control.timepicker').timepicker({
+	});
+
+	$('.form-control.change-date').datepicker({
+		startDate: '-1d',
+		autoclose: true,
+		dateFormat: 'mm/dd/yyyy',
+		defaultDate: 'value'
+	});
+	$('.form-control.change-timepicker').timepicker({
+		defaultTime: 'value'
+	});
 
  });
 

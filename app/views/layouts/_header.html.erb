@@ -5,7 +5,7 @@
     </div>
     <div class="navbar-collapse collapse">
       <% if signed_in? %>
-          <%= link_to "Book Now", new_company_consult_path(current_company.id), class: "btn btn-sm btn-primary btn-book-now" %>
+          <%= link_to "Book Now", new_company_consult_path(current_company.id), class: "btn btn-sm btn-primary btn-book-now", 'data-no-turbolink' => true %>
         <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if signed_in? %>

@@ -3,16 +3,14 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@meeting) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      
-      <%= f.label :consult_id %>
-      <%= f.number_field :consult_id %>
+    <% if current_user.alpine_user? %>
+      <%= render '/shared/alpine_meeting_form' %>
+    <% end %>
 
-      <%= f.label :description %>
-      <%= f.text_field :description %>
-	  
-	  <%= f.submit "Create a meeting", class: "btn btn-large btn-primary" %>
+    <% if !current_user.alpine_user? %>
+      <%= render '/shared/cust_meeting_form' %>
     <% end %>
   </div>
 </div>
+
+

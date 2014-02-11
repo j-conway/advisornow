@@ -1,0 +1,19 @@
+<%= form_for(@consult.meetings.build(consult_id: @consult.id, description: "Initial meeting", requester_id: current_user.id)) do |f| %>
+      
+  <%= f.hidden_field :consult_id %>
+  <%= f.hidden_field :description %>
+  <%= f.label :meeting_length, 'Meeting length (hours)?' %>
+  <%= f.select(:meeting_length, @length_choices.map { |value| [ value, value ]}, {:selected => @consult.requested_length}, {:class => 'form-control'}) %>
+
+  <%= f.label :meeting_date_field, 'What day you want to meet?' %>
+  <%= f.text_field :meeting_date_field, :class => 'form-control change-date', :value => @consult.consult_date_field %>
+
+  <%= f.label :meeting_time_field, 'What time (Pacific)?' %>
+  <%= f.text_field :meeting_time_field, :class => 'form-control change-timepicker', :id => 'timeInput', :value => @consult.consult_time_field %>
+  <%= f.hidden_field :requester_id %>
+  <%= f.hidden_field :status, :value => 'Open' %>
+  <%= f.hidden_field :requested, :value => true %>
+  <h2>Alpine Data Scientist</h2>
+  <%= f.collection_select(:datascientist_id, User.datascientists.all, :id, :name, {}, {:class => 'form-control'}) %>
+  <%= f.submit "Request Change", class: "btn btn-large btn-primary" %>
+<% end %>

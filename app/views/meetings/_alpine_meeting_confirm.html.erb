@@ -1,0 +1,6 @@
+<%= form_for [@consult, @meeting]  do |f| %>
+  
+  <%= f.hidden_field :requested, :value => false %>
+  <%= f.submit "Confirm", class: "btn btn-large btn-primary" %>
+
+<% end %>

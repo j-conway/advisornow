@@ -1,0 +1,18 @@
+<%= form_for [@consult, @meeting] do |f| %>
+      
+  <%= f.hidden_field :consult_id, :value => @meeting.consult_id %>
+  <%= f.label :description, 'Description' %>
+  <%= f.text_field :description, :class => 'form-control' %>
+  <%= f.label :meeting_length, 'Meeting length (hours)?' %>
+  <%= f.select(:meeting_length, @length_choices.map { |value| [ value, value ]}, {}, {:class => 'form-control'}) %>
+
+  <%= f.label :meeting_date_field, 'What day you want to meet?' %>
+  <%= f.text_field :meeting_date_field, :class => 'form-control date' %>
+
+  <%= f.label :meeting_time_field, 'What time (Pacific)?' %>
+  <%= f.text_field :meeting_time_field, :class => 'form-control timepicker', :id => 'timeInput'%>
+  <%= f.hidden_field :requester_id, :value => current_user.id %>
+  <%= f.hidden_field :status, :value => 'Open' %>
+  <%= f.hidden_field :requested, :value => true %>
+  <%= f.submit "Request Meeting", class: "btn btn-large btn-primary" %>
+<% end %>

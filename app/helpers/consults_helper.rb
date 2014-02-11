@@ -1,10 +1,9 @@
 module ConsultsHelper
 
-  def status_default
-    @status = params[:status]
-    if !@status
-      @status = "Open"
+  def filter_define
+    @filter = params[:status]
+    if !@filter
+      @filter = "Open" 
     end
   end
-
 end

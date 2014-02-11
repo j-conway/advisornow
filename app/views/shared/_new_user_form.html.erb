@@ -14,22 +14,22 @@
     <%= f.password_field :password_confirmation, :class => 'form-control' %>
 
     <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
+    <%= f.text_field :phone_number, :class => 'form-control' %>
       <div class="row user-form-choices">
         
-<div class="checkbox-group col-lg-6 col-md-6">
+<div class="checkbox-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
  
     <%= f.label :company_admin, "Admin?", :class => "checkbox inline checkbox-label" %>
     <%= f.check_box :company_admin, :class => "checkbox-box" %>
 </div>
-<div class="checkbox-group col-lg-6 col-md-6">
+<div class="checkbox-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
 
     <%= f.label :entitled, "Entitled?", :class => "checkbox inline checkbox-label" %>
     <%= f.check_box :entitled, :class => "checkbox-box" %>
    </div>
    </div>
    <div class="row user-form-choices">
-   <div class="checkbox-group col-lg-4 col-md-4 col-centered">
+   <div class="checkbox-group col-4 col-centered">
     <% if alpine_session? %>  
       <%= f.label :alpine_user , "Alpine?", :class => "checkbox inline checkbox-label" %>
       <%= f.check_box :alpine_user, :class => "checkbox-box " %>
@@ -39,7 +39,7 @@
 
    <br>
      <div class="row user-form-choices">
-        <div class="col-lg-8 col-md-8 col-centered">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-centered">
     <%= f.submit "Create new user", class: "btn btn-large btn-primary" %>
 </div>
 </div>

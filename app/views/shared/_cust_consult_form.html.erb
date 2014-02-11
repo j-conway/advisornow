@@ -1,7 +1,7 @@
 <div class="row">
 <%= form_for [@company, @consult] do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="col-lg-6 col-md-6 col-sm-6">
+  <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-6">
 
   <%= f.label :subject, "Subject" %>
   <%= f.text_field :subject, :class => 'form-control' %>
@@ -9,23 +9,23 @@
   <%= f.label :description, "Description" %>
   <%= f.text_area :description, size: "25x5", :class => 'form-control' %>
   </div>
-  <div class="col-lg-6 col-md-6 col-sm-6">
+  <div class="col-lg-5 col-md-6 col-sm-6">
 
   <%= f.label :requested_length, 'Meeting length (hours)?' %>
-  <%= f.select(:requested_length, @requested_lengths.map { |value| [ value, value ]}, {}, {:class => 'form-control'}) %>
+  <%= f.select(:requested_length, @length_choices.map { |value| [ value, value ]}, {}, {:class => 'form-control'}) %>
 
-  <%= f.label :requested_date_field, 'What day you want to meet?' %>
-  <%= f.text_field :requested_date_field, :class => 'form-control date' %>
+  <%= f.label :consult_date_field, 'What day you want to meet?' %>
+  <%= f.text_field :consult_date_field, :class => 'form-control date' %>
 
-  <%= f.label :requested_time_field, 'What time (Pacific)?' %>
-  <%= f.text_field :requested_time_field, :class => 'form-control timepicker', :id => 'timeInput' %>
+  <%= f.label :consult_time_field, 'What time (Pacific)?' %>
+  <%= f.text_field :consult_time_field, :class => 'form-control timepicker', :id => 'timeInput' %>
 
   </div>
   </div>
 
 </br>
 <div class="row">
-  <div class="col-lg-2 col-md-2 col-centered">
+  <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 col-centered">
 <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 </div>
 </div>

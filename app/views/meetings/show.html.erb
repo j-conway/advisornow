@@ -3,13 +3,15 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= @meeting.description %>: <%= @meeting.created_at %>
+        <%= @meeting.description %>
+      </h1>
+      <h1>
+        <%= @meeting.meeting_date_field %> at <%= @meeting.meeting_time_field %>
       </h1>
     </section>
   </aside>
   <div class="span8">
-    <h3><%= @meeting.description %></h3>
-    <h3><%= link_to @consult.subject, @consult %></h3>
+    <h3>Consult: <%= link_to @consult.subject, @consult %></h3>
     <% if @members.any? %>
       <ul class="users">
         <%= render @members %>
@@ -17,4 +19,34 @@
       <%= will_paginate @members %>
     <% end %>
   </div>
+  <% if @meeting.requested? && current_user.id != @meeting.requester_id %>
+    <% if alpine_session? %>
+    <div>
+      <%= render 'alpine_meeting_confirm' %>
+    </div>
+    <div>
+      <%= render 'alpine_meeting_change' %>
+    </div>
+    <% else %>
+    <div>
+      <%= render 'cust_meeting_confirm' %>
+    </div>
+    <div>
+      <%= render 'cust_meeting_change' %>
+    </div>
+    <% end %>
+  <% end %>
+  <% if @meeting.requested? && current_user.id == @meeting.requester_id %>
+  <div>
+    We're just waiting on the meeting to get confirmed!
+  </div>
+  <% end %>
+  <% if !@meeting.requested? %>
+  <div>
+    Meeting is coming up on <%= @meeting.meeting_date_field %> at <%= @meeting.meeting_time_field %>
+  </div>
+  <div class="btn-centered">
+    <%= link_to "Request Meeting Change", edit_consult_meeting_path(:consult_id => @meeting.consult.id), :class => "btn btn-large btn-primary", 'data-no-turbolink' => true %>
+  </div>
+  <% end %>
 </div>

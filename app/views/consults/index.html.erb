@@ -1,10 +1,9 @@
-<% provide(:title, 'All consults') %>
-<h1>All consults</h1>
-<h2><%= link_to current_company.name, company_path(current_company) %></h2>
-<%= will_paginate %>
-
-<ul class="users">
-  <%= render @consults %>
-</ul>
-
-<%= will_paginate %>
+<div class="col-lg-12 col-md-12">
+  <h1>Consults</h1>
+  <h2 id="back-to-company"><%= link_to "<< Back to "+current_company.name, company_path(current_company) %></h2>
+  <h2 id="entitlements-remaining"><%= @company.entitlements %> Entitlements Remaining</h2>
+  <%= render 'shared/consults_table' %>
+  <div class="text-center">
+  <%= will_paginate @consults, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

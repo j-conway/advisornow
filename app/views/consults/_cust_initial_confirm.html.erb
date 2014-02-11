@@ -1,0 +1,12 @@
+<%= form_for(@consult.meetings.build(consult_id: @consult.id, description: "Initial meeting.", meeting_length: @consult.requested_length, requester_id: @consult.creator.id)) do |f| %>
+      
+  <%= f.hidden_field :consult_id %>
+  <%= f.hidden_field :description %>
+  <%= f.hidden_field :meeting_time_field, :value => @consult.consult_time_field  %>
+  <%= f.hidden_field :meeting_date_field, :value => @consult.consult_date_field %>
+  <%= f.hidden_field :meeting_length %>
+  <%= f.hidden_field :requester_id %>
+  <%= f.hidden_field :status, :value => 'Open' %>
+  <%= f.hidden_field :requested, :value => false %>
+  <%= f.submit "Confirm", class: "btn btn-large btn-primary" %>
+<% end %>

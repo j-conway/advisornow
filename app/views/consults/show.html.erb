@@ -1,21 +1,22 @@
 <% provide(:title) %>
 <h1><%= @consult.subject %> </h1>
 <div class="row">
+  <% if current_user.id == @consult.creator_id && @consult.requested == true %>
   <div class="btn-centered">
-    <%= link_to "Edit Consult", edit_company_consult_path(:company_id => @consult.company.id), class: "btn btn-large btn-primary" %>
+    <%= link_to "Edit Consult", edit_company_consult_path(:company_id => @consult.company.id), :class => "btn btn-large btn-primary", 'data-no-turbolink' => true %>
   </div>
+  <% end %>
   <h2><%= link_to current_company.name, company_path(current_company) %></h2>
+  <h2>Status: <%= @consult.status %> </h2>
   <h2>Client: <%= @consult.customer.name %> </h2>
   <h2>Created By: <%= @consult.creator.name %> </h2>
   <% if @consult.datascientist %>
     <h2>Data Scientist: <%= @consult.datascientist.name %> </h2>
   <% end %>
-  <h2>Date Requested: <%= @consult.requested_date %> </h2>
-  <h2>Time Requested: <%= @consult.requested_time %> </h2>
-  <% if @consult.status == "Requested" && !alpine_session? %>
-    <%= render 'request_cust_pending' %>
-  <% elsif @consult.status == "Requested" && alpine_session? %>
-    <%= render 'request_alp_confirm' %>
+  <h2>Date Requested: <%= @consult.consult_date_field %> </h2>
+  <h2>Time Requested: <%= @consult.consult_time_field %> </h2>
+  <% if @consult.requested == true %>
+    <%= render 'consult_requested' %>
   <% end %>
   <div class="row">
     <div class="col-large-8">
@@ -37,9 +38,10 @@
     <% end %>
   </div>
 </div>
-  <% if @consult.status != "Requested" %>
+  <% if @consult.requested != true %>
   <div class = "span4">
-  <h2><%= render 'shared/meeting_form' %></h2>
+    <%= link_to "Add another meeting", new_consult_meeting_path(@consult.id), class: "btn btn-sm btn-primary btn-book-now", 'data-no-turbolink' => true %>
+  
 </div>
   <% end %>
 </div>

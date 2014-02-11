@@ -1,12 +1,14 @@
-<footer class="footer">
-  <small>
-    <a href="http://www.alpinenow.com/">Alpine Data Labs</a>
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to "About",   about_path %></li>
-      <li><%= link_to "Contact", contact_path %></li>
-      <li><a href="http://news.railstutorial.org/">News</a></li>
+<div id="footer">
+  <div class="container">
+  <div class="navbar-header">
+    <a id="footer-logo" href="http://www.alpinenow.com/">Alpine Data Labs</a>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "About",   about_path, :class => "footer-button" %></li>
+      <li><%= link_to "Contact", contact_path, :class => "footer-button" %></li>
+      <li><a class="footer-button" href="http://news.railstutorial.org/">News</a></li>
     </ul>
-  </nav>
-</footer>
+  </div>
+</div>
+</div>

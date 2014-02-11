@@ -1,0 +1,12 @@
+<% provide(:title, 'Edit Meeting') %>
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+      <h1>Edit a Meeting</h1>
+      <h2><%= link_to @meeting.description, consult_meeting_path %></h2>
+      </div>
+</div>
+      <% if alpine_session? %>
+        <%= render 'alpine_meeting_change' %>
+      <% else %>
+		<%= render 'cust_meeting_change' %>
+      <% end %>
