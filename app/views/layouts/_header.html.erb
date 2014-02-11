@@ -9,7 +9,7 @@
         <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if signed_in? %>
-          <li><%= link_to "Home", user_path(current_user) %></li>
+          <li><%= link_to "Home", root_path %></li>
           <li><%= link_to current_company.name, company_path(current_company) %></li>
           <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>

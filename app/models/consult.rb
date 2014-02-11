@@ -39,5 +39,9 @@ class Consult < ActiveRecord::Base
   def self.status_is(status)
     where("status = ?", status)
   end
+
+  def self.status_is(status)
+    where("status = ?", status)
+  end
   
 end

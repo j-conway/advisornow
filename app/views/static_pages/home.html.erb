@@ -1,5 +1,6 @@
 <% if signed_in? %>
 
+
   <% if @current_user.consults.any? %>
     <h1>Your Consultations</h1>
     <%= render 'shared/consults_table' %>

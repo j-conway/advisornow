@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20140210210810) do
     t.string   "status",             default: "Open"
     t.decimal  "requested_length"
     t.integer  "closer_id"
-    t.datetime "requested_datetime"
     t.string   "description"
     t.boolean  "requested"
+    t.datetime "requested_datetime"
   end
 
   create_table "meeting_memberships", force: true do |t|
