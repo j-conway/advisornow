@@ -2,17 +2,9 @@
 <h1>New Company</h1>
 
 <div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@company, :url => '/newcompany') do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
+  <div class="col-lg-6 col-md-8 col-centered">
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= render 'new_company_form' %>
 
-      <%= f.label :entitlements %>
-      <%= f.text_field :entitlements %>
-
-      <%= f.submit "Create my company", class: "btn btn-large btn-primary" %>
-    <% end %>
   </div>
 </div>

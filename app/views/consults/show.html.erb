@@ -15,9 +15,7 @@
   <% end %>
   <h2>Date Requested: <%= @consult.consult_date_field %> </h2>
   <h2>Time Requested: <%= @consult.consult_time_field %> </h2>
-  <% if @consult.requested == true %>
-    <%= render 'consult_requested' %>
-  <% end %>
+
   <div class="row">
     <div class="col-large-8">
     <% if @users.any? %>

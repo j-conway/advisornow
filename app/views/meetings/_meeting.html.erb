@@ -1,6 +1,6 @@
 <li>
   <%= link_to meeting.description, [@consult, meeting], 'data-no-turbolink' => true %>
-  <% if (meeting.requester_id != current_user.id && current_user.id == @consult.customer_id) || (meeting.requester_id != current_user.id && meeting.requester_id = @consult.customer_id) %>
+  <% if (meeting.requester_id != current_user.id && meeting.requested?) && (current_user.id == @consult.customer_id  ||  alpine_session?) %>
   	Confirm!
   <% end %>
   <% meeting.meeting_members.each do |member| %>

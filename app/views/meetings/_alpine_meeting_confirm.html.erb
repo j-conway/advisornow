@@ -1,6 +1,7 @@
-<%= form_for [@consult, @meeting]  do |f| %>
-  
+<%= form_for [consult, consult.open_meetings[0]]  do |f| %>
+  <%= f.label :datascientist_id, 'Alpine Data Scientist' %>
+  <%= f.collection_select(:datascientist_id, User.datascientists.all, :id, :name, {}, {:class => 'form-control'}) %>
   <%= f.hidden_field :requested, :value => false %>
-  <%= f.submit "Confirm", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Confirm", class: "btn btn-primary" %>
 
 <% end %>

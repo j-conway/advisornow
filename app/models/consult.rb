@@ -30,18 +30,25 @@ class Consult < ActiveRecord::Base
   def convert_consult_to_datetime
     self.requested_datetime = DateTime.parse("#{@consult_date_field} #{@consult_time_field}")
   end
+
+  def open_meetings
+    self.meetings.where(:status => "Open").order(meeting_datetime: :asc)
+  end
   
+  def next_open_meeting
+    self.open_meetings[0]
+  end
+
+  def next_open_meeting_datetime
+    self.next_open_meeting.meeting_datetime
+  end
 
 	def assigned?
     !self.datascientist.nil?
   end
 
   def self.status_is(status)
-    where("status = ?", status)
+    where("consults.status = ?", status)
   end
 
-  def self.status_is(status)
-    where("status = ?", status)
-  end
-  
 end

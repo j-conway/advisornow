@@ -2,25 +2,29 @@ class UsersController < ApplicationController
   before_action :authenticate
   #before_action :correct_user, only: [:edit, :update]
   #before_action :admin_user, only: [:edit, :update, :destroy]
-  before_action :same_company, :unless => :alpine_session?, only: [:show, :edit, :update]
+  before_action :same_company, :unless => :alpine_session?, only: [:show]
   before_action :correct_company, :unless => :alpine_session?, only: [:index]
-  before_action :company_admin_check, :unless => :alpine_session?, only: [:create, :edit, :update]
-  before_action :alpine_check, only: [:new, :create]
+  before_action :user_or_admin_check, :colleague, :unless => :alpine_session?,  only: [:edit, :update]
+  before_action :company_admin_check, :unless => :alpine_session?, only: [:new, :create]
+  before_action :admin_user, only: :destroy
 
   def index
     if params[:company_id]
       company = Company.find(params[:company_id])
       @users = company.users.paginate(page:params[:page])
     else
-      @users = User.paginate(page:params[:page])
+      user_filter
+      unpaginated_users = User.user_filter_is(@user_filter)
+      @users = unpaginated_users.paginate(page:params[:page])
     end
   end
 
   def show
     @user = User.find(params[:id])
-    filter_define
+    consults_filter
     @company = @user.company
-    unpaginated_consults = @user.consults.status_is(@filter)
+    unpaginated_consults = @user.consults.status_is(@consult_filter)
+    ordered_consults = unpaginated_consults.select("consults.*").joins(:meetings).where("meetings.status = 'Open'").group("consults.id").order("min(meeting_datetime)")
     @consults = unpaginated_consults.paginate(page:params[:page])
   end
 
@@ -30,12 +34,14 @@ class UsersController < ApplicationController
 
 
   def create
-    if params[:company_id]
-      @company = Company.find(params[:company_id])
+    if user_params[:alpine_user] == "1" && alpine_session?
+      @company = Company.find(1)
+      @user = @company.users.build(user_params)
     else
-      @company =  Company.find(user_params[:company_id])
+      @company = Company.find(params[:company_id])
+      @user = @company.users.build(user_params)
+      @user.admin = false
     end
-    @user = @company.users.build(user_params)
     if @user.save
       #sign_in @user
       flash[:success] = "User " + @user.name + " added."
@@ -94,6 +100,12 @@ class UsersController < ApplicationController
     def same_company
       user = User.find(params[:id]) 
       redirect_to(root_url) unless current_company?(user.company)
+    end
+
+    def colleague
+      @user = User.find(params[:id])
+      company_id = @user.company_id 
+      redirect_to(root_url) unless current_user.company_id = company_id
     end
 
     def correct_company

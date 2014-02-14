@@ -1,10 +1,48 @@
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
+<% if @user_filter == "All" %>
+<h1>All Users</h1>
+<% elsif @user_filter == "Alpine" %>
+<h1>Alpine Users</h1>
+<% elsif @user_filter == "Customers" %>
+<h1>All Customers</h1>
+<% else %>
+<h1><%= current_company.name %> Users</h1>
+<% end %>
 
-<%= will_paginate %>
+<% if !params[:company_id].nil? %>
+<h2 id="back-to-company"><%= link_to "<< Back to "+current_company.name, company_path(current_company) %></h2>
+
+
+
+<% else %>
+<h1> 
+	<div class="btn-group">
+		<% if @user_filter == "All" %>
+		<a href="/users" class="user-filter btn btn-default active">All Users</a>
+		  <a href="/users?user_filter=Alpine" class="user-filter btn btn-default">Alpine</a>
+		  <a href="/users?user_filter=Customers" class="user-filter btn btn-default">Customers</a>
+		<% elsif @user_filter == "Alpine" %>
+		<a href="/users" class="user-filter btn btn-default">All Users</a>
+		  <a href="/users?user_filter=Alpine" class="user-filter btn btn-default active">Alpine</a>
+		  <a href="/users?user_filter=Customers" class="user-filter btn btn-default">Customers</a>
+		<% elsif @user_filter == "Customers" %>
+		<a href="/users" class="user-filter btn btn-default">All Users</a>
+		  <a href="/users?user_filter=Alpine" class="user-filter btn btn-default">Alpine</a>
+		  <a href="/users?user_filter=Customers" class="user-filter btn btn-default active">Customers</a>
+		<% end %>
+	</div> 
+</h1>
+<h1>
+	<%= link_to "New User", new_user_path, class: "btn btn-sm btn-primary btn-book-now" %>
+</h1>
+<% end %>
+
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
 
 <ul class="users">
   <%= render @users %>
 </ul>
 
-<%= will_paginate %>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+
+	

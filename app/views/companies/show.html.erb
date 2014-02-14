@@ -1,8 +1,9 @@
 <% provide(:title, @company.name) %>
 <h1><%= @company.name %></h1>
 <h2 id="entitlements-remaining"><%= @company.entitlements %> Entitlements Remaining</h2>
+<h2><%= link_to "#{@company.users.count} Company Members", company_users_path(@company.id) %></h2>
 <div class="row">
-  <% if current_user.company_admin? %> 
+  <% if current_user.company_admin? || alpine_session? %> 
     
 
     <div class="col-lg-9 col-lg-push-3 col-md-9 col-md-push-3">
@@ -13,10 +14,10 @@
     </div>
 
     </div>
-    <aside class="col-lg-3 col-lg-offset-0 col-lg-pull-9 col-md-3 col-md-offset-0 col-md-pull-9 col-sm-6 col-sm-offset-3">
+    <aside class="col-lg-3 coll-lg-offset-0 col-lg-pull-9 col-md-3 col-md-offset-0 col-md-pull-9 col-sm-6 col-sm-offset-3">
       <h3>New <%= @company.name %> User</h3>
       <section>
-      <%= render '/shared/new_user_form' %>
+      <%= render 'new_user_form' %>
       </section>
     </aside>
 

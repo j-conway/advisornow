@@ -5,13 +5,15 @@ class ConsultsController < ApplicationController
   def index
     if params[:company_id]
       @company = Company.find(params[:company_id])
-      filter_define
-      unpaginated_consults = @company.consults.status_is(@status)
-      @consults = unpaginated_consults.paginate(:page => params[:page], :per_page => 10)
+      consults_filter
+      unpaginated_consults = @company.consults.status_is(@consult_filter)
+      ordered_consults = unpaginated_consults.select("consults.*").joins(:meetings).where("meetings.status = 'Open'").group("consults.id").order("min(meeting_datetime)")
+      @consults = ordered_consults.paginate(:page => params[:page], :per_page => 10)
     else
-      filter_define
-      unpaginated_consults = Consult.status_is(@status)
-      @consults = unpaginated_consults.paginate(:page => params[:page], :per_page => 10)
+      consults_filter
+      unpaginated_consults = Consult.status_is(@consult_filter)
+      ordered_consults = unpaginated_consults.select("consults.*").joins(:meetings).where("meetings.status = 'Open'").group("consults.id").order("min(meeting_datetime)")
+      @consults = ordered_consults.paginate(:page => params[:page], :per_page => 10)
     end
   end
 
@@ -45,21 +47,19 @@ class ConsultsController < ApplicationController
     end
     @consult.status = "Open"
     if @consult.save
-      if params[:consult_type] == "schedule"
-        Meeting.create!(
+      @meeting = Meeting.create!(
             :consult_id => @consult.id,
             :description => "Initial meeting",
-            :requested_date_field => @consult.consult_date_field,
-            :requested_time_field => @consult.consult_time_field,
-            :requested_length => @consult.requested_length,
-            :scheduled_date_field => @consult.consult_date_field,
-            :scheduled_time_field => @consult.consult_time_field,
-            :scheduled_length => @consult.requested_length,
+            :meeting_date_field => @consult.consult_date_field,
+            :meeting_time_field => @consult.consult_time_field,
+            :meeting_length => @consult.requested_length,
             :status => "Open",
             :requester_id => current_user.id,
-            :requested => false,
+            :requested => true,
             :datascientist_id => @consult.datascientist_id,
         )
+      if params[:consult_type] == "schedule"
+        @meeting.update_column(:requested, false)
       end
       flash[:success] = "Consult added."
       redirect_to company_path(@company)

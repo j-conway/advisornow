@@ -4,11 +4,11 @@
 <div class="row">
   <div class="span6 offset3">
     <% if current_user.alpine_user? %>
-      <%= render '/shared/alpine_meeting_form' %>
+      <%= render '/consults/alpine_meeting_form' %>
     <% end %>
 
     <% if !current_user.alpine_user? %>
-      <%= render '/shared/cust_meeting_form' %>
+      <%= render '/consults/cust_meeting_form' %>
     <% end %>
   </div>
 </div>

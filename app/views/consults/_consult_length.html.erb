@@ -1,0 +1,9 @@
+<% if consult.status == "Open" %>
+<td>
+  <span class="content"><%= consult.next_open_meeting.meeting_length %></span>
+</td>
+<% else %>
+<td>
+  <span class="content">--</span>
+</td>
+<% end %>

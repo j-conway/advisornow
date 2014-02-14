@@ -3,28 +3,33 @@
   <%= f.hidden_field :consult_id, :value => @meeting.consult_id %>
   <%= f.label :description, 'Description' %>
   <%= f.text_field :description, :class => 'form-control' %>
-  <%= f.label :meeting_length, 'Meeting length (hours)?' %>
-  <%= f.select(:meeting_length, @length_choices.map { |value| [ value, value ]}, {:selected => @consult.requested_length}, {:class => 'form-control'}) %>
+
 
   <%= f.label :meeting_date_field, 'What day you want to meet?' %>
   <%= f.text_field :meeting_date_field, :class => 'form-control change-date', :value => @meeting.meeting_date_field %>
 
   <%= f.label :meeting_time_field, 'What time (Pacific)?' %>
   <%= f.text_field :meeting_time_field, :class => 'form-control change-timepicker', :id => 'timeInput', :value => @meeting.meeting_time_field %>
+
+  <%= f.label :meeting_length, 'Meeting length (hours)?' %>
+  <%= f.select(:meeting_length, @length_choices.map { |value| [ value, value ]}, {:selected => @consult.requested_length}, {:class => 'form-control'}) %>
   <%= f.hidden_field :requester_id, :value => current_user.id %>
   <%= f.hidden_field :status, :value => 'Open' %>
   <%= f.hidden_field :requested, :value => true %>
+  <%= f.label :datascientist_id, 'Alpine Data Scientist' %>
+  <%= f.collection_select(:datascientist_id, User.datascientists.all, :id, :name, {}, {:class => 'form-control'}) %>
 
-  <div class="row">
-    <div class="col-lg-3 col-lg-offset-3 col-md-4 col-md-offset-2 col-sm-6">
-      <%= radio_button_tag(:meeting_type, "request", :checked => true) %>
-      <%= label_tag(:meeting_type_request, "Request") %>
+  <div class="row meeting-type-choices">
+    <div class="meeting-radio-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <%= radio_button_tag(:meeting_type, "request", true, :class => "meeting-radio-button") %>
+      <%= label_tag(:meeting_type_request, "Request", :class => "radio inline meeting-radio-label") %>
     </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= radio_button_tag(:meeting_type, "force") %>
-      <%= label_tag(:meeting_type_schedule, "Force changes") %>
+    <div class="meeting-radio-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <%= radio_button_tag(:meeting_type, "force", false, :class => "meeting-radio-button") %>
+      <%= label_tag(:meeting_type_schedule, "Schedule", :class => "radio inline meeting-radio-label") %>
     </div>
   </div>
+  
 
   <%= f.submit "Request Change", class: "btn btn-large btn-primary" %>
 

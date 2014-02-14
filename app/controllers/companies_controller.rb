@@ -5,9 +5,10 @@ class CompaniesController < ApplicationController
 
   def show
   	@company = Company.find(params[:id])
-    filter_define
-    unpaginated_consults = @company.consults.status_is(@filter)
-    @consults = unpaginated_consults.paginate(:page => params[:page], :per_page => 10)
+    consults_filter
+    unpaginated_consults = @company.consults.status_is(@consult_filter)
+    ordered_consults = unpaginated_consults.select("consults.*").joins(:meetings).where("meetings.status = 'Open'").group("consults.id").order("min(meeting_datetime)")
+    @consults = ordered_consults.paginate(:page => params[:page], :per_page => 10)
     @user = User.new
   end
 

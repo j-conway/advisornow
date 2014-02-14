@@ -7,41 +7,27 @@
   <%= f.text_field :subject, :class => 'form-control' %>
 
   <%= f.label :description, "Description" %>
-  <%= f.text_area :description, size: "25x5", :class => 'form-control' %>
+  <%= f.text_area :description, size: "40x8", :class => 'form-control' %>
   </div>
   <div class="col-lg-5 col-md-6 col-sm-6">
 
   <%= f.label :requested_length, 'Meeting length (hours)?' %>
   <%= f.select(:requested_length, @length_choices.map { |value| [ value, value ]}, {}, {:class => 'form-control'}) %>
 
+
+  </br>
+
   <%= f.label :consult_date_field, 'What day you want to meet?' %>
   <%= f.text_field :consult_date_field, :class => 'form-control date' %>
+
+
+  </br>
 
   <%= f.label :consult_time_field, 'What time (Pacific)?' %>
   <%= f.text_field :consult_time_field, :class => 'form-control timepicker', :id => 'timeInput' %>
 
   </div>
   </div>
-  <div class="row">
-    <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-6">
-  <h2><%= @company.name %> Customer</h2>
-  <%= f.collection_select(:customer_id, @users.all, :id, :name, {}, {:class => 'form-control'}) %>
-    </div>
-    <div class="col-lg-5 col-md-6 col-sm-6">
-  <h2>Alpine Data Scientist</h2>
-  <%= f.collection_select(:datascientist_id, User.datascientists.all, :id, :name, {}, {:class => 'form-control'}) %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-lg-3 col-lg-offset-3 col-md-4 col-md-offset-2 col-sm-6">
-    <%= radio_button_tag(:consult_type, "request", :checked => true) %>
-    <%= label_tag(:consult_type_request, "Request") %>
-  </div>
-  <div class="col-lg-3 col-md-4 col-sm-6">
-    <%= radio_button_tag(:consult_type, "schedule") %>
-    <%= label_tag(:consult_type_schedule, "Schedule") %>
-  </div>
-</div>
 
 </br>
 <div class="row">
@@ -49,5 +35,5 @@
 <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 </div>
 </div>
-</div>
+
 <% end %>

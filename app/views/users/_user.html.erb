@@ -1,8 +1,11 @@
 <li>
   <%= gravatar_for user, size: 52 %>
   <%= link_to user.name, user %>
-  <% if (current_user.company_admin? || alpine_session?) && !current_user?(user) %>
+  <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "Are you sure you want to delete this person?" } %>
+  <% end %>
+  <% if current_user.admin? || current_user?(user) || (current_user.company_admin? && !user.alpine_user?) || (current_user.alpine_user? && !user.alpine_user?) %>
+    | <%= link_to "edit", edit_user_path(user) %>
   <% end %>
 </li>

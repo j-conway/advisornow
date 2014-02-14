@@ -1,16 +1,37 @@
 <% if signed_in? %>
 
+<h1>Welcome to AdvisorNow</h1>
+<div class="row">
+	<div class="col-lg-6 col-md-6">
+		<h2>Book a Consult</h2>
+		<% if alpine_session? %>
+		<%= render 'consults/alpine_consult_form' %>
+		<% else %>
+		<%= render 'consults/cust_consult_form' %>
+		<% end %>
+	</div>
+</br>
+	<div class="col-lg-6 col-md-6">
+		<div class="row">
+			<div class="">
+			  <h2>Open Consults (<%= @open_consults.count %>)</h2>
+			  <%= render 'open_consults_table' %>
+			  <div class="text-center">
+			  <%= will_paginate @open_consults, renderer: BootstrapPagination::Rails %>
+			  </div>
+			</div>
+		</div>
 
-  <% if @current_user.consults.any? %>
-    <h1>Your Consultations</h1>
-    <%= render 'shared/consults_table' %>
-  <% end %>
-
-
-
-<% else %>
-
-<h1>Welcome to Advisor Now</h1>
+		<div class="row">
+			<div class="">
+			  <h2>Closed Consults (<%= @closed_consults.count %>)</h2>
+			  <%= render 'closed_consults_table' %>
+			  <div class="text-center">
+			  <%= will_paginate @closed_consults, renderer: BootstrapPagination::Rails %>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <% end %>
-

@@ -40,8 +40,27 @@ $(function() {
 		defaultTime: 'value'
 	});
 
- });
+	if( $('.alpine-select').is(':checked'))
+	    $(".non-alpine").hide();	
+    else
+        $(".non-alpine").show();
+	    
+
+	$('.alpine-select').click(function() {
+	    if( $(this).is(':checked')) {
+	        $(".non-alpine").hide(),
+	        $(".alpine").show();
+	    } else {
+	        $(".non-alpine").show(),
+	        $(".alpine").hide();
+	    }
+	}); 
+});
+
+
 
 $("#timeIcon").click(function(){
   $("#timeInput").click();
 });
+
+

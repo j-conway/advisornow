@@ -1,0 +1,20 @@
+<div class="table-responsive">
+<table class="table table-striped" summary="Consults">
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Next Meeting</th>
+      <th>Length (hours)</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    
+    <%= render :partial => 'consults/user_consult', :collection => @closed_consults, :as => :consult %>
+    
+  </tbody>
+  
+</table> 
+</div>

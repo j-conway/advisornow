@@ -1,9 +1,9 @@
 module ConsultsHelper
 
-  def filter_define
-    @filter = params[:status]
-    if !@filter
-      @filter = "Open" 
+  def consults_filter
+    @consult_filter = params[:status]
+    if !@consult_filter
+      @consult_filter = "Open" 
     end
   end
 end

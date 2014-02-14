@@ -10,11 +10,11 @@
   </div>
 </div>
 <% if current_user.alpine_user? %>
-  <%= render '/shared/alpine_consult_form' %>
+  <%= render 'alpine_consult_form' %>
 <% end %>
 
 <% if !current_user.alpine_user? %>
-  <%= render '/shared/cust_consult_form' %>
+  <%= render 'cust_consult_form' %>
 <% end %>
       
     

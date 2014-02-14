@@ -1,22 +1,26 @@
-<% if @filter != "Open" %>
+<% if @consult_filter != "Open" %>
   <span class="ticket-toggle"><%= link_to "View Open Tickets" %></span>
 <% else %>
   <span class="ticket-toggle"><%= link_to "View Closed Tickets", {:status => "Closed"} %></span>
 <% end %>
-<table class="table table-hover" summary="Consults">
+<div class="table-responsive">
+<table id="consults-table" class="table table-striped" summary="Consults">
   <thead>
     <tr>
       <th>Subject</th>
-      <th>Last Updated</th>
-      <th>Data Scientist</th>
       <th>Primary Customer</th>
+      <th>Next Meeting</th>
+      <th>Length (hours)</th>
+      <th>Status</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
 
     
-    <%= render @consults %>
+    <%= render :partial => 'consults/company_consult', :collection => @consults, :as => :consult %>
     
   </tbody>
   
 </table> 
+</div>

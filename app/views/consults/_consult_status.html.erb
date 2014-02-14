@@ -1,0 +1,9 @@
+<% if consult.next_open_meeting.requested? %>
+<td class="cases <%= consult_status(consult) %>">
+  <span class="content">Requested</span>
+</td>
+<% elsif !consult.next_open_meeting.requested? %>
+<td>
+  <span class="content <%= consult_status(consult) %>">Scheduled</span>
+</td>
+<% end %>

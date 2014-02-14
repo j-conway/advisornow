@@ -7,4 +7,11 @@ module UsersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
+
+  def user_filter
+    @user_filter = params[:user_filter]
+    if !@user_filter
+      @user_filter = "All" 
+    end
+  end
 end

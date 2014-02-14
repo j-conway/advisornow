@@ -1,0 +1,54 @@
+<div class="row">
+<%= form_for [@company, @consult] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-6">
+
+  <%= f.label :subject, "Subject" %>
+  <%= f.text_field :subject, :class => 'form-control' %>
+
+  <%= f.label :description, "Description" %>
+  <%= f.text_area :description, size: "40x8", :class => 'form-control' %>
+  </div>
+  <div class="col-lg-5 col-md-6 col-sm-6">
+
+  <%= f.label :requested_length, 'Meeting length (hours)?' %>
+  <%= f.select(:requested_length, @length_choices.map { |value| [ value, value ]}, {}, {:class => 'form-control'}) %>
+
+  <%= f.label :consult_date_field, 'What day you want to meet?' %>
+  <%= f.text_field :consult_date_field, :class => 'form-control date' %>
+
+  <%= f.label :consult_time_field, 'What time (Pacific)?' %>
+  <%= f.text_field :consult_time_field, :class => 'form-control timepicker', :id => 'timeInput' %>
+
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-6">
+  <%= f.label :customer_id, "#{@company.name} Customer" %>
+  <%= f.collection_select(:customer_id, @users.all, :id, :name, {}, {:class => 'form-control'}) %>
+    </div>
+    <div class="col-lg-5 col-md-6 col-sm-6">
+  <%= f.label :datascientist_id, 'Alpine Data Scientist' %>
+  <%= f.collection_select(:datascientist_id, User.datascientists.all, :id, :name, {}, {:class => 'form-control'}) %>
+  </div>
+</div>
+<div class="row consult-type-choices">
+  <div class="consult-radio-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <%= radio_button_tag(:consult_type, "request", true, :class => "consult-radio-button") %>
+    <%= label_tag(:consult_type_request, "Request", :class => "radio inline consult-radio-label") %>
+  </div>
+  <div class="consult-radio-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <%= radio_button_tag(:consult_type, "schedule", false, :class => "consult-radio-button") %>
+    <%= label_tag(:consult_type_schedule, "Schedule", :class => "radio inline consult-radio-label") %>
+  </div>
+</div>
+
+
+</br>
+<div class="row">
+  <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 col-centered">
+<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+</div>
+</div>
+
+<% end %>

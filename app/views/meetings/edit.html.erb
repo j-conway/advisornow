@@ -1,12 +1,35 @@
 <% provide(:title, 'Edit Meeting') %>
+
+<h1><%= link_to @meeting.description, consult_meeting_path %></h1>
 <div class="row">
-  <div class="col-lg-6 col-lg-offset-3">
-      <h1>Edit a Meeting</h1>
-      <h2><%= link_to @meeting.description, consult_meeting_path %></h2>
-      </div>
-</div>
-      <% if alpine_session? %>
-        <%= render 'alpine_meeting_change' %>
-      <% else %>
+
+	<% if @meeting.requested? && @meeting.requester_id != current_user.id && (@consult.customer_id == current_user.id || alpine_session?) %>
+
+	<div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1">
+		<h2>Request a Change</h2>
+		<% if alpine_session? %>
+		<%= render 'alpine_meeting_change' %>
+		<% else %>
 		<%= render 'cust_meeting_change' %>
-      <% end %>
+		<% end %>
+	</div>
+	<div class="col-lg-4 col-md-5">
+		<h2>Confirm the Meeting</h2>
+		</br>
+		<% if alpine_session? %>
+		<%= render 'alpine_meeting_confirm', :consult => @consult %>
+		<% else %>
+		<%= render 'cust_meeting_confirm', :consult => @consult %>
+		<% end %>
+	</div>
+	<% else %>
+	<div class="col-lg-4 col-md-5 col-centered">
+		<h2>Request a Change</h2>
+		<% if alpine_session? %>
+		<%= render 'alpine_meeting_change' %>
+		<% else %>
+		<%= render 'cust_meeting_change' %>
+		<% end %>
+	</div>
+	<% end %>
+</div>

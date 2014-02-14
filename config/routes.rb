@@ -2,7 +2,7 @@ Advisornow::Application.routes.draw do
   get "meetings/new"
   #get 'users/:id', to: 'users#show', defaults: { status: 'Open' }
 
-  resources :users, :only => [:create, :index, :show, :edit, :update, :destroy] do
+  resources :users, :only => [:create, :index, :show, :edit, :update, :destroy, :new] do
     resources :meetings
     resources :users, :only => [:create, :index, :show, :edit, :update, :destroy]
   end
@@ -19,8 +19,7 @@ Advisornow::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :meetings, :only => [:show, :destroy, :update, :new, :create]
   root  'static_pages#home'
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signup',  to: 'users#create',         via: 'post'
+
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

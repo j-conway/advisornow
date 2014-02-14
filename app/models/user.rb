@@ -33,9 +33,16 @@ class User < ActiveRecord::Base
     where(datascientist: true)
   end
 
-  def self.status_is(status)
-    where("status = ?", status)
+  def self.user_filter_is(user_filter)
+    if user_filter == "All"
+      all
+    elsif user_filter == "Alpine"
+      where('alpine_user = true')
+    elsif user_filter == "Customers"
+      where('alpine_user = false')
+    end
   end
+
 
   private
 

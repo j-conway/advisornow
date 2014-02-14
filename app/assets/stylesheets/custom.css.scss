@@ -26,7 +26,7 @@ h1 {
   text-align: center; }
 
 h2 {
-  font-size: 18px;
+  font-size: 22px;
   letter-spacing: -1px;
   margin: 5px 0px;
   text-align: center;
@@ -37,6 +37,13 @@ h3 {
   letter-spacing: -1px;
   margin: 5px 0px;
   text-align: left;
+  font-weight: normal; }
+
+h4 {
+  font-size: 18px;
+  letter-spacing: -1px;
+  margin: 5px 0px;
+  text-align: center;
   font-weight: normal; }
 
 p {
@@ -242,6 +249,41 @@ aside textarea {
   width: 20px;
   margin: 0 auto; }
 
+.consult-type-choices {
+  margin-left: 0px;
+  width: 100%; }
+
+.consult-radio-group {
+  padding: 0px;
+  text-align: center; }
+
+.consult-radio-label {
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px; }
+
+.consult-radio-button {
+  width: 20px;
+  margin: 0 auto; }
+
+.meeting-type-choices {
+  margin-left: 0px;
+  width: 100%; }
+
+.meeting-radio-group {
+  padding: 0px;
+  text-align: center; }
+
+.meeting-radio-label {
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px; }
+
+.meeting-radio-button {
+  width: 20px;
+  margin: 0 auto; }
+
+
 .pagination {
   text-align: center; }
 
@@ -254,4 +296,45 @@ aside textarea {
     margin-left: 42%;
     float: left; 
   } 
+}
+
+.confirm-link {
+  /* Remove all decorations to look like normal text */
+  background: none;
+  border: none;
+  display: inline;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  outline-offset: 0;
+  /* Additional styles to look like a link */
+  color: #428bca;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 11px;
+}
+.confirm-link:hover {
+  text-decoration: underline;
+}
+
+.edit-link {
+  font-size:11px;
+}
+
+#consults-table {
+  font-size:14px;
+  text-align:center;
+}
+
+#consults-table th{
+  text-align:center;
+}
+
+.pending-consult{
+  color: red;
+}
+
+.scheduled-consult{
+  color: green;
 }
